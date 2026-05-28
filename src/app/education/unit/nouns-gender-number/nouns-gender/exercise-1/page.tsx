@@ -104,14 +104,28 @@ export default function Exercise1Page() {
 
     const isCorrect = draggedItem.correctGender === genderType;
 
+    // Check if item was previously placed and update score accordingly
+    const previousPlacement = placedItems[draggedItem.id];
+    let scoreAdjustment = { correct: 0, incorrect: 0 };
+
+    if (previousPlacement) {
+      // Remove previous score contribution
+      scoreAdjustment.correct = previousPlacement.isCorrect ? -1 : 0;
+      scoreAdjustment.incorrect = previousPlacement.isCorrect ? 0 : -1;
+    }
+
+    // Add new score contribution
+    scoreAdjustment.correct += isCorrect ? 1 : 0;
+    scoreAdjustment.incorrect += isCorrect ? 0 : 1;
+
     setPlacedItems(prev => ({
       ...prev,
       [draggedItem.id]: { ...draggedItem, placedGender: genderType, isCorrect }
     }));
 
     setScore(prev => ({
-      correct: prev.correct + (isCorrect ? 1 : 0),
-      incorrect: prev.incorrect + (isCorrect ? 0 : 1)
+      correct: prev.correct + scoreAdjustment.correct,
+      incorrect: prev.incorrect + scoreAdjustment.incorrect
     }));
 
     setDraggedItem(null);
@@ -120,6 +134,26 @@ export default function Exercise1Page() {
     if (Object.keys(placedItems).length + 1 === allWords.length) {
       setShowResults(true);
     }
+  };
+
+  const handleRemoveWord = (wordId: string) => {
+    const placedItem = placedItems[wordId];
+    if (!placedItem) return;
+
+    // Update score - remove the contribution
+    setScore(prev => ({
+      correct: prev.correct - (placedItem.isCorrect ? 1 : 0),
+      incorrect: prev.incorrect - (placedItem.isCorrect ? 0 : 1)
+    }));
+
+    // Remove from placed items (sends back to word bank)
+    setPlacedItems(prev => {
+      const newPlaced = { ...prev };
+      delete newPlaced[wordId];
+      return newPlaced;
+    });
+
+    setShowResults(false);
   };
 
   const handleReset = () => {
@@ -155,6 +189,11 @@ export default function Exercise1Page() {
               <p className="text-sm text-green-700">
                 This exercise tests your ability to <strong>identify the gender of different nouns</strong>. You'll drag and drop words into the correct gender category: Masculine (male), Feminine (female), Common (applies to both), or Neuter (non-living). This helps you recognize gender patterns in English.
               </p>
+              <div className="mt-2 p-2 bg-white rounded border border-green-300">
+                <p className="text-xs text-green-800">
+                  💡 <strong>Tip:</strong> Click on placed words to remove them, or drag them between boxes to change your answer!
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -235,15 +274,22 @@ export default function Exercise1Page() {
                     {itemsInBox.map(item => (
                       <div
                         key={item.id}
-                        className={`p-2 md:p-3 rounded-lg ${
+                        draggable
+                        onDragStart={(e) => handleDragStart(e, item)}
+                        onClick={() => handleRemoveWord(item.id)}
+                        className={`p-2 md:p-3 rounded-lg cursor-move hover:shadow-md transition-all ${
                           item.isCorrect
                             ? 'bg-green-200 border-2 border-green-500'
                             : 'bg-red-200 border-2 border-red-500'
-                        }`}
+                        } group relative`}
+                        title="Click to remove or drag to another box"
                       >
                         <div className="font-semibold text-gray-800 text-sm md:text-base">{item.word}</div>
                         <div className="text-xs text-gray-600 flex items-center gap-1">
                           {item.isCorrect ? '✓' : '✗'} {item.category}
+                        </div>
+                        <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span className="text-red-600 text-xs bg-white px-1 py-0.5 rounded">✕ Remove</span>
                         </div>
                       </div>
                     ))}

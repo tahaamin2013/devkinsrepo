@@ -334,7 +334,7 @@ export default function EducationPage() {
               return (
                 <div
                   key={box.type}
-                  className={`sticky top-4 rounded-lg shadow-lg overflow-hidden ${box.color} border-4 min-h-[250px] md:min-h-[300px]`}
+                  className={`sticky top-4 rounded-lg shadow-lg overflow-hidden ${box.color} border-4 h-125`}
                   onDragOver={handleDragOver}
                   onDrop={(e) => handleDrop(e, box.type)}
                 >

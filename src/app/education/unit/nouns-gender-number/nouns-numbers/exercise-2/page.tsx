@@ -70,7 +70,7 @@ export default function NounsNumbersExercise2Page() {
   const score = submitted ? getScore() : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8 mt-40">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8 mt-30 pb-40">
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <Link
@@ -224,6 +224,31 @@ export default function NounsNumbersExercise2Page() {
             </Link>
           </div>
         )}
+      </div>
+
+      {/* Rules Section - Fixed at bottom */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] dark:shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] p-4 z-50 border-t-2 border-gray-200 dark:border-gray-700">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-3">✅ Change to Plural Form Rules</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+            <div className="flex items-start gap-2">
+              <span className="text-indigo-600 dark:text-indigo-400 font-semibold text-sm">General:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Add -s: book → books</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-purple-600 dark:text-purple-400 font-semibold text-sm">-es Ending:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">-ss, -x, -ch, -sh: box → boxes</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm">-ies Ending:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Consonant + y: city → cities</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-pink-600 dark:text-pink-400 font-semibold text-sm">Irregular:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">foot → feet, mouse → mice</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

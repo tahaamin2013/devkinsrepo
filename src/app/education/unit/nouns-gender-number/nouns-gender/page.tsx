@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function NounsGenderPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4 sm:px-6 lg:px-8 mt-40">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4 sm:px-6 lg:px-8 mt-30 pb-40">
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <Link
@@ -81,6 +81,31 @@ export default function NounsGenderPage() {
               >
                 Exercise 5: Choose the Right Word
               </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Rules Section - Fixed at bottom */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] dark:shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] p-4 z-50 border-t-2 border-gray-200 dark:border-gray-700">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-3">✅ Gender Rules</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+            <div className="flex items-start gap-2">
+              <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm">Masculine:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Male (insan ya janwar) ke naam</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-pink-600 dark:text-pink-400 font-semibold text-sm">Feminine:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Female (insan ya janwar) ke naam</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-purple-600 dark:text-purple-400 font-semibold text-sm">Common:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Dono ke liye common</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-gray-600 dark:text-gray-400 font-semibold text-sm">Neuter:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Non-living cheezen</span>
             </div>
           </div>
         </div>

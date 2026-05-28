@@ -87,7 +87,7 @@ export default function Exercise2Page() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 md:p-8 mt-40">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 md:p-8 pb-40">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
@@ -254,6 +254,27 @@ export default function Exercise2Page() {
             </Link>
           </div>
         )}
+      </div>
+
+      {/* Rules Section - Fixed at bottom */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] dark:shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] p-4 z-50 border-t-2 border-gray-200 dark:border-gray-700">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-3">✅ Masculine → Feminine Rules</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
+            <div className="flex items-start gap-2">
+              <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm">-or → -ress:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">actor → actress</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-pink-600 dark:text-pink-400 font-semibold text-sm">-er → -ess:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">waiter → waitress</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-purple-600 dark:text-purple-400 font-semibold text-sm">Common:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">man → woman, king → queen</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

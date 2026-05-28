@@ -168,7 +168,7 @@ export default function Exercise1Page() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 md:p-8 mt-40">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 md:p-8 pb-40">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
@@ -256,13 +256,14 @@ export default function Exercise1Page() {
           </div>
 
           {/* Gender Boxes */}
+             {/* Gender Boxes */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
             {genderBoxes.map(box => {
               const itemsInBox = getItemsInBox(box.type);
               return (
                 <div
                   key={box.type}
-                  className={`sticky top-4 rounded-lg shadow-lg overflow-hidden ${box.color} border-4 min-h-[250px] md:min-h-[300px]`}
+                  className={`sticky top-4 rounded-lg shadow-lg overflow-hidden ${box.color} border-4 h-125`}
                   onDragOver={handleDragOver}
                   onDrop={(e) => handleDrop(e, box.type)}
                 >
@@ -270,7 +271,7 @@ export default function Exercise1Page() {
                     <h3 className="text-base md:text-xl font-bold">{box.title}</h3>
                     <p className="text-xs md:text-sm opacity-90">{box.description}</p>
                   </div>
-                  <div className="p-3 md:p-4 space-y-2">
+                  <div className="p-3 md:p-4 space-y-2 max-h-75 md:max-h-100 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 hover:scrollbar-thumb-gray-500 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800">
                     {itemsInBox.map(item => (
                       <div
                         key={item.id}
@@ -302,6 +303,31 @@ export default function Exercise1Page() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </div>
+
+      {/* Rules Section - Fixed at bottom */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] dark:shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] p-4 z-50 border-t-2 border-gray-200 dark:border-gray-700">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-3">✅ Gender Rules</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+            <div className="flex items-start gap-2">
+              <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm">Masculine:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Male (insan ya janwar) ke naam</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-pink-600 dark:text-pink-400 font-semibold text-sm">Feminine:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Female (insan ya janwar) ke naam</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-purple-600 dark:text-purple-400 font-semibold text-sm">Common:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Dono ke liye common</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-gray-600 dark:text-gray-400 font-semibold text-sm">Neuter:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Non-living cheezen</span>
+            </div>
           </div>
         </div>
       </div>

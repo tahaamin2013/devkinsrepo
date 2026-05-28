@@ -264,6 +264,8 @@ export default function Exercise5Page() {
                         const isSelected = userAnswer === option;
                         const isCorrectOption = option === question.correctAnswer;
 
+
+                        
                         return (
                           <button
                             key={optIndex}

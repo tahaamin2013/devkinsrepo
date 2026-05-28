@@ -293,7 +293,7 @@ export default function Exercise5Page() {
                             )}
                             {submitted && isSelected && (
                               <div className="text-center mt-1">
-                                {isSelected === question.correctAnswer ? '✓' : '✗'}
+                                {isCorrectOption ? '✓' : '✗'}
                               </div>
                             )}
                           </button>

@@ -432,7 +432,7 @@ export default function EducationPage() {
             </div>
             <div className="flex items-start gap-2">
               <span className="text-gray-600 dark:text-gray-400 font-semibold text-sm">Neuter:</span>
-              <span className="text-gray-700 dark:text-gray-300 text-sm">Non-living, Collective nouns</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Chotay bachay aur janwar (Non-living things)</span>
             </div>
           </div>
         </div>

@@ -243,8 +243,8 @@ export default function EducationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 md:p-8 mt-40">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 pb-40">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 md:py-8 mt-40">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">Noun Gender Classification</h1>
@@ -253,29 +253,6 @@ export default function EducationPage() {
             <p className="text-sm text-blue-800 dark:text-blue-300">
               💡 <strong>Tip:</strong> Click on placed words to remove them, or drag them between boxes to change your answer!
             </p>
-          </div>
-        </div>
-
-        {/* Rules Section */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-6 mb-6 md:mb-8">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-white mb-4">✅ Rules</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="flex items-start gap-2">
-              <span className="text-blue-600 dark:text-blue-400 font-semibold">Masculine:</span>
-              <span className="text-gray-700 dark:text-gray-300">Male (insan ya janwar) ke naam</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-pink-600 dark:text-pink-400 font-semibold">Feminine:</span>
-              <span className="text-gray-700 dark:text-gray-300">Female (insan ya janwar) ke naam</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-purple-600 dark:text-purple-400 font-semibold">Common:</span>
-              <span className="text-gray-700 dark:text-gray-300">Dono ke liye common (applies to both)</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-gray-600 dark:text-gray-400 font-semibold">Neuter:</span>
-              <span className="text-gray-700 dark:text-gray-300">Non-living cheezen, Collective nouns, Chotay bachay</span>
-            </div>
           </div>
         </div>
 
@@ -401,7 +378,7 @@ export default function EducationPage() {
         </div>
 
         {/* Complete Rules Reference */}
-        <div className="mt-6 md:mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-6">
+        <div className="mt-6 md:mt-8 mb-48 bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-6">
           <h2 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-white mb-4">📚 Complete Rules Reference</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <div>
@@ -432,6 +409,31 @@ export default function EducationPage() {
               <li>Chotay bachay aur janwar (Baby, Child, Puppy, Kitten) → Neuter Gender</li>
               <li>Non-living things, places, ideas → Neuter Gender</li>
             </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Rules Section - Fixed at bottom */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] dark:shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] p-4 z-50 border-t-2 border-gray-200 dark:border-gray-700">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-3">✅ Rules</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+            <div className="flex items-start gap-2">
+              <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm">Masculine:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Male (insan ya janwar) ke naam</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-pink-600 dark:text-pink-400 font-semibold text-sm">Feminine:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Female (insan ya janwar) ke naam</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-purple-600 dark:text-purple-400 font-semibold text-sm">Common:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Dono ke liye common</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-gray-600 dark:text-gray-400 font-semibold text-sm">Neuter:</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Non-living, Collective nouns</span>
+            </div>
           </div>
         </div>
       </div>

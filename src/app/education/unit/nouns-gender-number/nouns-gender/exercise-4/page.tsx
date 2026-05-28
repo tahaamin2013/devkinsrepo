@@ -198,11 +198,11 @@ export default function Exercise4Page() {
               className={`w-32 p-2 border-2 rounded-lg text-center ${
                 submitted
                   ? isCorrect
-                    ? 'bg-green-50 border-green-400 text-green-800'
-                    : 'bg-red-50 border-red-400 text-red-800'
+                    ? 'bg-green-50 dark:bg-green-900/30 border-green-400 dark:border-green-600 text-green-800 dark:text-green-300'
+                    : 'bg-red-50 dark:bg-red-900/30 border-red-400 dark:border-red-600 text-red-800 dark:text-red-300'
                   : hasAnswer && isCorrect
-                  ? 'bg-green-50 border-green-400 text-green-800'
-                  : 'border-gray-300 focus:border-blue-400 focus:ring-2 focus:ring-blue-200'
+                  ? 'bg-green-50 dark:bg-green-900/30 border-green-400 dark:border-green-600 text-green-800 dark:text-green-300'
+                  : 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-800'
               }`}
               placeholder="_____"
             />
@@ -233,25 +233,25 @@ export default function Exercise4Page() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 p-4 md:p-8">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 md:p-8 mt-40">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Exercise 4: Change Gender in Sentences</h1>
-          <p className="text-base md:text-lg text-gray-600">Fill in the blanks with the correct gender forms</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">Exercise 4: Change Gender in Sentences</h1>
+          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300">Fill in the blanks with the correct gender forms</p>
         </div>
 
         {/* Description Box */}
-        <div className="bg-indigo-50 border-2 border-indigo-200 rounded-lg p-4 mb-6">
+        <div className="bg-indigo-50 dark:bg-indigo-900/20 border-2 border-indigo-200 dark:border-indigo-700 rounded-lg p-4 mb-6">
           <div className="flex items-start gap-3">
-            <div className="text-indigo-600 mt-1">
+            <div className="text-indigo-600 dark:text-indigo-400 mt-1">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <div>
-              <h3 className="font-semibold text-indigo-800 mb-1">Exercise Description</h3>
-              <p className="text-sm text-indigo-700">
+              <h3 className="font-semibold text-indigo-800 dark:text-indigo-400 mb-1">Exercise Description</h3>
+              <p className="text-sm text-indigo-700 dark:text-indigo-300">
                 Each sentence has <strong>blanks where you need to type the correct gender forms</strong>. Look at the original sentence above, identify which words need to be changed, and type the correct gender form in the blanks below.
               </p>
             </div>
@@ -262,13 +262,13 @@ export default function Exercise4Page() {
         {submitted && (
           <div className={`mb-6 p-6 rounded-xl text-center ${
             score === exercises.length
-              ? 'bg-green-100 border-2 border-green-400'
+              ? 'bg-green-100 dark:bg-green-900 border-2 border-green-400 dark:border-green-600'
               : score >= exercises.length / 2
-              ? 'bg-yellow-100 border-2 border-yellow-400'
-              : 'bg-red-100 border-2 border-red-400'
+              ? 'bg-yellow-100 dark:bg-yellow-900 border-2 border-yellow-400 dark:border-yellow-600'
+              : 'bg-red-100 dark:bg-red-900 border-2 border-red-400 dark:border-red-600'
           }`}>
-            <h2 className="text-2xl font-bold mb-2">Your Score: {score} / {exercises.length}</h2>
-            <p className="text-gray-700">
+            <h2 className="text-2xl font-bold mb-2 text-gray-800 dark:text-white">Your Score: {score} / {exercises.length}</h2>
+            <p className="text-gray-700 dark:text-gray-300">
               {score === exercises.length
                 ? 'Excellent! All answers correct!'
                 : score >= exercises.length / 2
@@ -280,7 +280,7 @@ export default function Exercise4Page() {
 
         {/* Controls */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
-          <div className="text-gray-600">
+          <div className="text-gray-600 dark:text-gray-400">
             Completed: {exercises.filter(e => isExerciseComplete(e)).length} / {exercises.length}
           </div>
           <div className="flex gap-2">
@@ -316,12 +316,12 @@ export default function Exercise4Page() {
             return (
               <div
                 key={exercise.id}
-                className={`bg-white rounded-lg shadow-md p-6 border-2 ${
+                className={`bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border-2 ${
                   submitted
                     ? exerciseCorrect
-                      ? 'border-green-400'
-                      : 'border-red-400'
-                    : 'border-gray-200'
+                      ? 'border-green-400 dark:border-green-600'
+                      : 'border-red-400 dark:border-red-600'
+                    : 'border-gray-200 dark:border-gray-600'
                 }`}
               >
                 <div className="flex items-start gap-2 mb-4">
@@ -336,37 +336,37 @@ export default function Exercise4Page() {
                   </span>
                   <div className="flex-1">
                     {/* Original Sentence */}
-                    <div className="mb-3 p-3 bg-gray-50 rounded-lg">
-                      <p className="text-sm text-gray-500 mb-1">Original:</p>
-                      <p className="text-gray-700 font-medium">
+                    <div className="mb-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Original:</p>
+                      <p className="text-gray-700 dark:text-gray-200 font-medium">
                         {exercise.originalSentence}
                       </p>
                     </div>
 
                     {/* Fill-in-the-blank Sentence */}
-                    <div className="mb-3 p-4 bg-blue-50 rounded-lg">
-                      <p className="text-sm text-blue-600 mb-2">Fill in the blanks:</p>
+                    <div className="mb-3 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                      <p className="text-sm text-blue-600 dark:text-blue-400 mb-2">Fill in the blanks:</p>
                       <div className="text-lg">
                         {createFillInBlanksSentence(exercise)}
                       </div>
                     </div>
 
                     {/* Change Instructions */}
-                    <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
-                      <p className="text-sm text-yellow-800">
+                    <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 rounded-lg p-3">
+                      <p className="text-sm text-yellow-800 dark:text-yellow-400">
                         <strong>Changes needed:</strong> {exercise.description}
                       </p>
                     </div>
 
                     {exerciseComplete && !submitted && (
-                      <div className="mt-2 text-sm text-green-600">
+                      <div className="mt-2 text-sm text-green-600 dark:text-green-400">
                         ✓ All blanks filled!
                       </div>
                     )}
 
                     {submitted && !exerciseCorrect && (
-                      <div className="mt-2 p-3 bg-green-50 rounded-lg">
-                        <p className="text-sm text-green-800">
+                      <div className="mt-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                        <p className="text-sm text-green-800 dark:text-green-400">
                           <strong>Correct sentence:</strong> {exercise.correctSentence}
                         </p>
                       </div>
@@ -380,9 +380,9 @@ export default function Exercise4Page() {
 
         {/* Instructions */}
         {!submitted && (
-          <div className="mt-6 bg-blue-50 rounded-lg p-4">
-            <h3 className="font-semibold text-blue-800 mb-2">Instructions:</h3>
-            <ol className="list-decimal list-inside text-blue-700 space-y-1">
+          <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+            <h3 className="font-semibold text-blue-800 dark:text-blue-400 mb-2">Instructions:</h3>
+            <ol className="list-decimal list-inside text-blue-700 dark:text-blue-300 space-y-1">
               <li>Read the original sentence above</li>
               <li>Identify which words need gender changes</li>
               <li>Type the correct forms in the blanks below</li>
@@ -402,7 +402,7 @@ export default function Exercise4Page() {
             </button>
             <Link
               href="/education/unit/nouns-gender-number/nouns-gender"
-              className="inline-block bg-gray-200 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
+              className="inline-block bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 px-8 py-3 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
             >
               Back to Lesson
             </Link>

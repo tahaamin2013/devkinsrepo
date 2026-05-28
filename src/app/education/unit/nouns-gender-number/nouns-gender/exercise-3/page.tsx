@@ -87,25 +87,25 @@ export default function Exercise3Page() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 p-4 md:p-8">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 md:p-8 mt-40">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Exercise 3: Feminine to Masculine Conversion</h1>
-          <p className="text-base md:text-lg text-gray-600">Convert each feminine noun to its masculine form</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">Exercise 3: Feminine to Masculine Conversion</h1>
+          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300">Convert each feminine noun to its masculine form</p>
         </div>
 
         {/* Description Box */}
-        <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-4 mb-6">
+        <div className="bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-200 dark:border-purple-700 rounded-lg p-4 mb-6">
           <div className="flex items-start gap-3">
-            <div className="text-purple-600 mt-1">
+            <div className="text-purple-600 dark:text-purple-400 mt-1">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <div>
-              <h3 className="font-semibold text-purple-800 mb-1">Exercise Description</h3>
-              <p className="text-sm text-purple-700">
+              <h3 className="font-semibold text-purple-800 dark:text-purple-400 mb-1">Exercise Description</h3>
+              <p className="text-sm text-purple-700 dark:text-purple-300">
                 This exercise is the <strong>opposite</strong> of Exercise 2. Here you will convert <strong>feminine nouns to masculine nouns</strong>. It includes the same gender pairs as Exercise 2 but tests your knowledge in the reverse direction. For example, if you see "actress", you should type "actor".
               </p>
             </div>
@@ -116,13 +116,13 @@ export default function Exercise3Page() {
         {submitted && (
           <div className={`mb-6 p-6 rounded-xl text-center ${
             score === genderPairs.length
-              ? 'bg-green-100 border-2 border-green-400'
+              ? 'bg-green-100 dark:bg-green-900 border-2 border-green-400 dark:border-green-600'
               : score >= genderPairs.length / 2
-              ? 'bg-yellow-100 border-2 border-yellow-400'
-              : 'bg-red-100 border-2 border-red-400'
+              ? 'bg-yellow-100 dark:bg-yellow-900 border-2 border-yellow-400 dark:border-yellow-600'
+              : 'bg-red-100 dark:bg-red-900 border-2 border-red-400 dark:border-red-600'
           }`}>
-            <h2 className="text-2xl font-bold mb-2">Your Score: {score} / {genderPairs.length}</h2>
-            <p className="text-gray-700">
+            <h2 className="text-2xl font-bold mb-2 text-gray-800 dark:text-white">Your Score: {score} / {genderPairs.length}</h2>
+            <p className="text-gray-700 dark:text-gray-300">
               {score === genderPairs.length
                 ? 'Excellent! All answers correct!'
                 : score >= genderPairs.length / 2
@@ -134,7 +134,7 @@ export default function Exercise3Page() {
 
         {/* Controls */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
-          <div className="text-gray-600">
+          <div className="text-gray-600 dark:text-gray-400">
             Completed: {Object.keys(userAnswers).length} / {genderPairs.length}
           </div>
           <div className="flex gap-2">
@@ -162,8 +162,8 @@ export default function Exercise3Page() {
         </div>
 
         {/* Exercise Area */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+          <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4 text-center">
             Convert Feminine to Masculine
           </h3>
           <div className="space-y-3">
@@ -178,17 +178,17 @@ export default function Exercise3Page() {
                   className={`p-4 rounded-lg border-2 ${
                     submitted
                       ? correct
-                        ? 'bg-green-50 border-green-400'
-                        : 'bg-red-50 border-red-400'
+                        ? 'bg-green-50 dark:bg-green-900/20 border-green-400 dark:border-green-600'
+                        : 'bg-red-50 dark:bg-red-900/20 border-red-400 dark:border-red-600'
                       : currentlyCorrect
-                      ? 'bg-green-50 border-green-400'
-                      : 'bg-gray-50 border-gray-200'
+                      ? 'bg-green-50 dark:bg-green-900/20 border-green-400 dark:border-green-600'
+                      : 'bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex-1">
-                      <div className="font-semibold text-gray-800 mb-1">{pair.feminine}</div>
-                      <div className="text-sm text-gray-500">→ Masculine form</div>
+                      <div className="font-semibold text-gray-800 dark:text-white mb-1">{pair.feminine}</div>
+                      <div className="text-sm text-gray-500 dark:text-gray-400">→ Masculine form</div>
                     </div>
                     <div className="flex-1">
                       <input
@@ -200,20 +200,20 @@ export default function Exercise3Page() {
                         className={`w-full p-2 border-2 rounded-lg ${
                           submitted
                             ? correct
-                              ? 'bg-green-50 border-green-400'
-                              : 'bg-red-50 border-red-400'
+                              ? 'bg-green-50 dark:bg-green-900/30 border-green-400 dark:border-green-600'
+                              : 'bg-red-50 dark:bg-red-900/30 border-red-400 dark:border-red-600'
                             : currentlyCorrect
-                            ? 'bg-green-50 border-green-400'
-                            : 'border-gray-300 focus:border-blue-400 focus:ring-2 focus:ring-blue-200'
+                            ? 'bg-green-50 dark:bg-green-900/30 border-green-400 dark:border-green-600'
+                            : 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-800'
                         }`}
                       />
                       {currentlyCorrect && !submitted && (
-                        <div className="text-sm text-green-600 mt-1">
+                        <div className="text-sm text-green-600 dark:text-green-400 mt-1">
                           ✓ Correct!
                         </div>
                       )}
                       {submitted && !correct && (
-                        <div className="text-sm text-green-600 mt-1">
+                        <div className="text-sm text-green-600 dark:text-green-400 mt-1">
                           Correct: {pair.masculine}
                         </div>
                       )}
@@ -227,9 +227,9 @@ export default function Exercise3Page() {
 
         {/* Instructions */}
         {!submitted && (
-          <div className="mt-6 bg-blue-50 rounded-lg p-4">
-            <h3 className="font-semibold text-blue-800 mb-2">Instructions:</h3>
-            <ol className="list-decimal list-inside text-blue-700 space-y-1">
+          <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+            <h3 className="font-semibold text-blue-800 dark:text-blue-400 mb-2">Instructions:</h3>
+            <ol className="list-decimal list-inside text-blue-700 dark:text-blue-300 space-y-1">
               <li>Type the masculine form of each feminine noun</li>
               <li>Press Enter or Tab to move to the next field</li>
               <li>Complete all fields before submitting</li>
@@ -248,7 +248,7 @@ export default function Exercise3Page() {
             </button>
             <Link
               href="/education/unit/nouns-gender-number/nouns-gender"
-              className="inline-block bg-gray-200 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
+              className="inline-block bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 px-8 py-3 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
             >
               Back to Lesson
             </Link>

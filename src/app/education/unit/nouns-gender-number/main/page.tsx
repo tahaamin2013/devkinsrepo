@@ -168,7 +168,16 @@ export default function EducationPage() {
     e.preventDefault();
     if (!draggedItem) return;
 
-    const isCorrect = draggedItem.correctGender === genderType;
+    // Common gender words are correct in ANY box
+    const commonGenderWords = ['baby', 'child', 'companion', 'teacher', 'servant', 'bird', 'person', 'friend', 'helper'];
+    const isCommonGenderWord = commonGenderWords.includes(draggedItem.id);
+
+    // Baby animals are correct only in common and neuter boxes
+    const babyAnimals = ['puppy', 'kitten'];
+    const isBabyAnimal = babyAnimals.includes(draggedItem.id);
+    const isBabyAnimalCorrect = isBabyAnimal && (genderType === 'common' || genderType === 'neuter');
+
+    const isCorrect = isCommonGenderWord || isBabyAnimalCorrect || draggedItem.correctGender === genderType;
 
     // Check if item was previously placed and update score accordingly
     const previousPlacement = placedItems[draggedItem.id];
@@ -234,38 +243,38 @@ export default function EducationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 p-4 md:p-8">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 md:p-8 mt-40">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Noun Gender Classification</h1>
-          <p className="text-base md:text-lg text-gray-600">Drag words to the correct gender box</p>
-          <div className="mt-2 inline-block bg-blue-50 border border-blue-200 rounded-lg px-4 py-2">
-            <p className="text-sm text-blue-800">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">Noun Gender Classification</h1>
+          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300">Drag words to the correct gender box</p>
+          <div className="mt-2 inline-block bg-blue-50 dark:bg-gray-700 border border-blue-200 dark:border-gray-600 rounded-lg px-4 py-2">
+            <p className="text-sm text-blue-800 dark:text-blue-300">
               💡 <strong>Tip:</strong> Click on placed words to remove them, or drag them between boxes to change your answer!
             </p>
           </div>
         </div>
 
         {/* Rules Section */}
-        <div className="bg-white rounded-lg shadow-md p-4 md:p-6 mb-6 md:mb-8">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">✅ Rules</h2>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-6 mb-6 md:mb-8">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-white mb-4">✅ Rules</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex items-start gap-2">
-              <span className="text-blue-600 font-semibold">Masculine:</span>
-              <span>Male (insan ya janwar) ke naam</span>
+              <span className="text-blue-600 dark:text-blue-400 font-semibold">Masculine:</span>
+              <span className="text-gray-700 dark:text-gray-300">Male (insan ya janwar) ke naam</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-pink-600 font-semibold">Feminine:</span>
-              <span>Female (insan ya janwar) ke naam</span>
+              <span className="text-pink-600 dark:text-pink-400 font-semibold">Feminine:</span>
+              <span className="text-gray-700 dark:text-gray-300">Female (insan ya janwar) ke naam</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-purple-600 font-semibold">Common:</span>
-              <span>Dono ke liye common (applies to both)</span>
+              <span className="text-purple-600 dark:text-purple-400 font-semibold">Common:</span>
+              <span className="text-gray-700 dark:text-gray-300">Dono ke liye common (applies to both)</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-gray-600 font-semibold">Neuter:</span>
-              <span>Non-living cheezen, Collective nouns, Chotay bachay</span>
+              <span className="text-gray-600 dark:text-gray-400 font-semibold">Neuter:</span>
+              <span className="text-gray-700 dark:text-gray-300">Non-living cheezen, Collective nouns, Chotay bachay</span>
             </div>
           </div>
         </div>
@@ -273,15 +282,15 @@ export default function EducationPage() {
         {/* Score and Controls */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
           <div className="flex gap-2 md:gap-4 flex-wrap">
-            <div className="bg-green-100 px-3 md:px-4 py-2 rounded-lg">
-              <span className="text-green-700 font-semibold">✓ Correct: {score.correct}</span>
+            <div className="bg-green-100 dark:bg-green-900 px-3 md:px-4 py-2 rounded-lg">
+              <span className="text-green-700 dark:text-green-300 font-semibold">✓ Correct: {score.correct}</span>
             </div>
-            <div className="bg-red-100 px-3 md:px-4 py-2 rounded-lg">
-              <span className="text-red-700 font-semibold">✗ Incorrect: {score.incorrect}</span>
+            <div className="bg-red-100 dark:bg-red-900 px-3 md:px-4 py-2 rounded-lg">
+              <span className="text-red-700 dark:text-red-300 font-semibold">✗ Incorrect: {score.incorrect}</span>
             </div>
             {showResults && (
-              <div className="bg-blue-100 px-3 md:px-4 py-2 rounded-lg">
-                <span className="text-blue-700 font-semibold">
+              <div className="bg-blue-100 dark:bg-blue-900 px-3 md:px-4 py-2 rounded-lg">
+                <span className="text-blue-700 dark:text-blue-300 font-semibold">
                   Score: {Math.round((score.correct / allWords.length) * 100)}%
                 </span>
               </div>
@@ -298,12 +307,12 @@ export default function EducationPage() {
         {/* Game Area */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
           {/* Word Bank with Categories */}
-          <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
-            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-4">📝 Word Bank</h3>
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-6">
+            <h3 className="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-4">📝 Word Bank</h3>
 
             {Object.entries(categorizedWords).map(([categoryKey, category]) => (
               <div key={categoryKey} className="mb-4 md:mb-6">
-                <h4 className="text-base md:text-lg font-semibold text-gray-700 mb-2 md:mb-3 border-b-2 border-gray-200 pb-2">
+                <h4 className="text-base md:text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2 md:mb-3 border-b-2 border-gray-200 dark:border-gray-600 pb-2">
                   {category.title}
                 </h4>
 
@@ -317,16 +326,16 @@ export default function EducationPage() {
 
                   return (
                     <div key={subKey} className="mb-2 md:mb-3 ml-2 md:ml-4">
-                      <h5 className="text-xs md:text-sm font-medium text-gray-600 mb-1 md:mb-2">{subcategory.title}</h5>
+                      <h5 className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 md:mb-2">{subcategory.title}</h5>
                       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                         {availableWords.map(word => (
                           <div
                             key={word!.id}
                             draggable
                             onDragStart={(e) => handleDragStart(e, word!)}
-                            className="bg-blue-50 p-2 md:p-3 rounded-lg cursor-move hover:shadow-md transition-shadow text-center border-2 border-transparent hover:border-blue-300"
+                            className="bg-blue-50 dark:bg-gray-700 p-2 md:p-3 rounded-lg cursor-move hover:shadow-md transition-shadow text-center border-2 border-transparent hover:border-blue-300 dark:hover:border-blue-500"
                           >
-                            <div className="font-semibold text-gray-800 text-sm md:text-base">{word!.word}</div>
+                            <div className="font-semibold text-gray-800 dark:text-gray-200 text-sm md:text-base">{word!.word}</div>
                           </div>
                         ))}
                       </div>
@@ -337,7 +346,7 @@ export default function EducationPage() {
             ))}
 
             {unplacedWords.length === 0 && (
-              <p className="text-center text-gray-500 py-6 md:py-8">All words have been placed! 🎉</p>
+              <p className="text-center text-gray-500 dark:text-gray-400 py-6 md:py-8">All words have been placed! 🎉</p>
             )}
           </div>
 
@@ -365,22 +374,22 @@ export default function EducationPage() {
                         onClick={() => handleRemoveWord(item.id)}
                         className={`p-2 md:p-3 rounded-lg cursor-move hover:shadow-md transition-all ${
                           item.isCorrect
-                            ? 'bg-green-200 border-2 border-green-500'
-                            : 'bg-red-200 border-2 border-red-500'
+                            ? 'bg-green-200 dark:bg-green-800 border-2 border-green-500 dark:border-green-600'
+                            : 'bg-red-200 dark:bg-red-800 border-2 border-red-500 dark:border-red-600'
                         } group relative`}
                         title="Click to remove or drag to another box"
                       >
-                        <div className="font-semibold text-gray-800 text-sm md:text-base">{item.word}</div>
-                        <div className="text-xs text-gray-600 flex items-center gap-1">
+                        <div className="font-semibold text-gray-800 dark:text-gray-200 text-sm md:text-base">{item.word}</div>
+                        <div className="text-xs text-gray-600 dark:text-gray-300 flex items-center gap-1">
                           {item.isCorrect ? '✓' : '✗'} {item.category}
                         </div>
                         <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <span className="text-red-600 text-xs bg-white px-1 py-0.5 rounded">✕ Remove</span>
+                          <span className="text-red-600 dark:text-red-400 text-xs bg-white dark:bg-gray-700 px-1 py-0.5 rounded">✕ Remove</span>
                         </div>
                       </div>
                     ))}
                     {itemsInBox.length === 0 && (
-                      <div className="text-center text-gray-400 py-6 md:py-8 border-2 border-dashed border-gray-300 rounded-lg">
+                      <div className="text-center text-gray-400 dark:text-gray-500 py-6 md:py-8 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
                         Drop words here
                       </div>
                     )}
@@ -392,33 +401,33 @@ export default function EducationPage() {
         </div>
 
         {/* Complete Rules Reference */}
-        <div className="mt-6 md:mt-8 bg-white rounded-lg shadow-md p-4 md:p-6">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">📚 Complete Rules Reference</h2>
+        <div className="mt-6 md:mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-6">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-white mb-4">📚 Complete Rules Reference</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <div>
-              <h3 className="font-bold text-blue-700 mb-2">Masculine Gender</h3>
-              <p className="text-gray-700 mb-2 text-sm md:text-base">Jo noun kisi male insan ya male janwar ka naam ho, usay Masculine Gender kehte hain.</p>
-              <p className="text-xs md:text-sm text-gray-600">Examples: boy, man, uncle, dog, horse, bull</p>
+              <h3 className="font-bold text-blue-700 dark:text-blue-400 mb-2">Masculine Gender</h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-2 text-sm md:text-base">Jo noun kisi male insan ya male janwar ka naam ho, usay Masculine Gender kehte hain.</p>
+              <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Examples: boy, man, uncle, dog, horse, bull</p>
             </div>
             <div>
-              <h3 className="font-bold text-pink-700 mb-2">Feminine Gender</h3>
-              <p className="text-gray-700 mb-2 text-sm md:text-base">Jo noun kisi female insan ya female janwar ka naam ho, usay Feminine Gender kehte hain.</p>
-              <p className="text-xs md:text-sm text-gray-600">Examples: Aiza, woman, aunt, bitch, mare, cow</p>
+              <h3 className="font-bold text-pink-700 dark:text-pink-400 mb-2">Feminine Gender</h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-2 text-sm md:text-base">Jo noun kisi female insan ya female janwar ka naam ho, usay Feminine Gender kehte hain.</p>
+              <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Examples: Aiza, woman, aunt, bitch, mare, cow</p>
             </div>
             <div>
-              <h3 className="font-bold text-purple-700 mb-2">Common Gender</h3>
-              <p className="text-gray-700 mb-2 text-sm md:text-base">Jo noun male aur female dono ke liye use ho sakta ho, usay Common Gender kehte hain.</p>
-              <p className="text-xs md:text-sm text-gray-600">Examples: baby, companion, teacher, person, friend, bird</p>
+              <h3 className="font-bold text-purple-700 dark:text-purple-400 mb-2">Common Gender</h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-2 text-sm md:text-base">Jo noun male aur female dono ke liye use ho sakta ho, usay Common Gender kehte hain.</p>
+              <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Examples: baby, companion, teacher, person, friend, bird</p>
             </div>
             <div>
-              <h3 className="font-bold text-gray-700 mb-2">Neuter Gender</h3>
-              <p className="text-gray-700 mb-2 text-sm md:text-base">Jo noun kisi be-jaan cheez ka naam ho, usay Neuter Gender kehte hain.</p>
-              <p className="text-xs md:text-sm text-gray-600">Examples: box, tree, flower, team, class, happiness, city</p>
+              <h3 className="font-bold text-gray-700 dark:text-gray-400 mb-2">Neuter Gender</h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-2 text-sm md:text-base">Jo noun kisi be-jaan cheez ka naam ho, usay Neuter Gender kehte hain.</p>
+              <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Examples: box, tree, flower, team, class, happiness, city</p>
             </div>
           </div>
-          <div className="mt-4 p-3 md:p-4 bg-yellow-50 rounded-lg">
-            <h4 className="font-semibold text-yellow-800 mb-2 text-sm md:text-base">⚠️ Important Notes</h4>
-            <ul className="list-disc list-inside text-xs md:text-sm text-gray-700 space-y-1">
+          <div className="mt-4 p-3 md:p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+            <h4 className="font-semibold text-yellow-800 dark:text-yellow-400 mb-2 text-sm md:text-base">⚠️ Important Notes</h4>
+            <ul className="list-disc list-inside text-xs md:text-sm text-gray-700 dark:text-gray-300 space-y-1">
               <li>Collective nouns (Team, Class, Army, Crowd) → Neuter Gender</li>
               <li>Chotay bachay aur janwar (Baby, Child, Puppy, Kitten) → Neuter Gender</li>
               <li>Non-living things, places, ideas → Neuter Gender</li>

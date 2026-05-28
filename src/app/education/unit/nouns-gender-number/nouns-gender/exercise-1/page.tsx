@@ -168,29 +168,29 @@ export default function Exercise1Page() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 p-4 md:p-8">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 md:p-8 mt-40">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Exercise 1: Noun Gender Classification</h1>
-          <p className="text-base md:text-lg text-gray-600">State the Gender of each of the following nouns</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">Exercise 1: Noun Gender Classification</h1>
+          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300">State the Gender of each of the following nouns</p>
         </div>
 
         {/* Description Box */}
-        <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4 mb-6">
+        <div className="bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-700 rounded-lg p-4 mb-6">
           <div className="flex items-start gap-3">
-            <div className="text-green-600 mt-1">
+            <div className="text-green-600 dark:text-green-400 mt-1">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <div>
-              <h3 className="font-semibold text-green-800 mb-1">Exercise Description</h3>
-              <p className="text-sm text-green-700">
+              <h3 className="font-semibold text-green-800 dark:text-green-400 mb-1">Exercise Description</h3>
+              <p className="text-sm text-green-700 dark:text-green-300">
                 This exercise tests your ability to <strong>identify the gender of different nouns</strong>. You'll drag and drop words into the correct gender category: Masculine (male), Feminine (female), Common (applies to both), or Neuter (non-living). This helps you recognize gender patterns in English.
               </p>
-              <div className="mt-2 p-2 bg-white rounded border border-green-300">
-                <p className="text-xs text-green-800">
+              <div className="mt-2 p-2 bg-white dark:bg-gray-800 rounded border border-green-300 dark:border-green-600">
+                <p className="text-xs text-green-800 dark:text-green-300">
                   💡 <strong>Tip:</strong> Click on placed words to remove them, or drag them between boxes to change your answer!
                 </p>
               </div>
@@ -201,15 +201,15 @@ export default function Exercise1Page() {
         {/* Score and Controls */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
           <div className="flex gap-2 md:gap-4 flex-wrap">
-            <div className="bg-green-100 px-3 md:px-4 py-2 rounded-lg">
-              <span className="text-green-700 font-semibold">✓ Correct: {score.correct}</span>
+            <div className="bg-green-100 dark:bg-green-900 px-3 md:px-4 py-2 rounded-lg">
+              <span className="text-green-700 dark:text-green-300 font-semibold">✓ Correct: {score.correct}</span>
             </div>
-            <div className="bg-red-100 px-3 md:px-4 py-2 rounded-lg">
-              <span className="text-red-700 font-semibold">✗ Incorrect: {score.incorrect}</span>
+            <div className="bg-red-100 dark:bg-red-900 px-3 md:px-4 py-2 rounded-lg">
+              <span className="text-red-700 dark:text-red-300 font-semibold">✗ Incorrect: {score.incorrect}</span>
             </div>
             {showResults && (
-              <div className="bg-blue-100 px-3 md:px-4 py-2 rounded-lg">
-                <span className="text-blue-700 font-semibold">
+              <div className="bg-blue-100 dark:bg-blue-900 px-3 md:px-4 py-2 rounded-lg">
+                <span className="text-blue-700 dark:text-blue-300 font-semibold">
                   Score: {Math.round((score.correct / allWords.length) * 100)}%
                 </span>
               </div>
@@ -234,8 +234,8 @@ export default function Exercise1Page() {
         {/* Game Area */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
           {/* Word Bank */}
-          <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
-            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-4">📝 Word Bank</h3>
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-6">
+            <h3 className="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-4">📝 Word Bank</h3>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
               {unplacedWords.map(word => (
@@ -243,15 +243,15 @@ export default function Exercise1Page() {
                   key={word.id}
                   draggable
                   onDragStart={(e) => handleDragStart(e, word)}
-                  className="bg-blue-50 p-2 md:p-3 rounded-lg cursor-move hover:shadow-md transition-shadow text-center border-2 border-transparent hover:border-blue-300"
+                  className="bg-blue-50 dark:bg-gray-700 p-2 md:p-3 rounded-lg cursor-move hover:shadow-md transition-shadow text-center border-2 border-transparent hover:border-blue-300 dark:hover:border-blue-500"
                 >
-                  <div className="font-semibold text-gray-800 text-sm md:text-base">{word.word}</div>
+                  <div className="font-semibold text-gray-800 dark:text-gray-200 text-sm md:text-base">{word.word}</div>
                 </div>
               ))}
             </div>
 
             {unplacedWords.length === 0 && (
-              <p className="text-center text-gray-500 py-6 md:py-8">All words have been placed! 🎉</p>
+              <p className="text-center text-gray-500 dark:text-gray-400 py-6 md:py-8">All words have been placed! 🎉</p>
             )}
           </div>
 
@@ -279,22 +279,22 @@ export default function Exercise1Page() {
                         onClick={() => handleRemoveWord(item.id)}
                         className={`p-2 md:p-3 rounded-lg cursor-move hover:shadow-md transition-all ${
                           item.isCorrect
-                            ? 'bg-green-200 border-2 border-green-500'
-                            : 'bg-red-200 border-2 border-red-500'
+                            ? 'bg-green-200 dark:bg-green-800 border-2 border-green-500 dark:border-green-600'
+                            : 'bg-red-200 dark:bg-red-800 border-2 border-red-500 dark:border-red-600'
                         } group relative`}
                         title="Click to remove or drag to another box"
                       >
-                        <div className="font-semibold text-gray-800 text-sm md:text-base">{item.word}</div>
-                        <div className="text-xs text-gray-600 flex items-center gap-1">
+                        <div className="font-semibold text-gray-800 dark:text-gray-200 text-sm md:text-base">{item.word}</div>
+                        <div className="text-xs text-gray-600 dark:text-gray-300 flex items-center gap-1">
                           {item.isCorrect ? '✓' : '✗'} {item.category}
                         </div>
                         <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <span className="text-red-600 text-xs bg-white px-1 py-0.5 rounded">✕ Remove</span>
+                          <span className="text-red-600 dark:text-red-400 text-xs bg-white dark:bg-gray-700 px-1 py-0.5 rounded">✕ Remove</span>
                         </div>
                       </div>
                     ))}
                     {itemsInBox.length === 0 && (
-                      <div className="text-center text-gray-400 py-6 md:py-8 border-2 border-dashed border-gray-300 rounded-lg">
+                      <div className="text-center text-gray-400 dark:text-gray-500 py-6 md:py-8 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
                         Drop words here
                       </div>
                     )}

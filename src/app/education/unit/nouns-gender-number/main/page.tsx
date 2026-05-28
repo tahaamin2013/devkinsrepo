@@ -342,7 +342,7 @@ export default function EducationPage() {
                     <h3 className="text-base md:text-xl font-bold">{box.title}</h3>
                     <p className="text-xs md:text-sm opacity-90">{box.description}</p>
                   </div>
-                  <div className="p-3 md:p-4 space-y-2">
+                  <div className="p-3 md:p-4 space-y-2 max-h-75 md:max-h-100 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 hover:scrollbar-thumb-gray-500 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800">
                     {itemsInBox.map(item => (
                       <div
                         key={item.id}

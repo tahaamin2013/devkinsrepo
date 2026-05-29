@@ -116,7 +116,7 @@ export default function NounsNumbersExercise2Page() {
         )}
 
         {/* Questions */}
-        <div className="space-y-6">
+        <div className="space-y-6 sticky top-4">
           {questions.map((q) => {
             const userAnswer = userAnswers[q.id];
             const isCorrect = userAnswer?.toLowerCase().trim() === q.answer.toLowerCase().trim();

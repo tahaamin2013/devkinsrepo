@@ -224,7 +224,7 @@ export default function Exercise5Page() {
         </div>
 
         {/* Exercise Area */}
-        <div className="space-y-6">
+        <div className="space-y-6 sticky top-4">
           {questions.map((question, index) => {
             const userAnswer = userAnswers[question.id];
             const correct = isCorrect(question.id);

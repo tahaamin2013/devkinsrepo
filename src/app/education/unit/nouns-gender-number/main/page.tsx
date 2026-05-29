@@ -116,7 +116,7 @@ export default function EducationPage() {
       description: 'Chotay bachay aur janwar, Non-living things, Collectie Nouns',
       color: 'bg-gray-50 border-gray-300',
       headerColor: 'bg-gray-500',
-      rule: 'Non-living cheezen → Neuter Gender'
+      rule: 'Chotay bachay aur janwar, Non-living things, Collectie Nouns → Neuter Gender'
     }
   ];
 

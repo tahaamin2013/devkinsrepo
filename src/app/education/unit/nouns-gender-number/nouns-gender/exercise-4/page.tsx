@@ -308,7 +308,7 @@ export default function Exercise4Page() {
         </div>
 
         {/* Exercise Area */}
-        <div className="space-y-6">
+        <div className="space-y-6 sticky top-4">
           {exercises.map((exercise, index) => {
             const exerciseComplete = isExerciseComplete(exercise);
             const exerciseCorrect = isExerciseCorrect(exercise);

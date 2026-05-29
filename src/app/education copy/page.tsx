@@ -113,10 +113,10 @@ export default function EducationPage() {
     {
       type: 'neuter',
       title: 'Neuter Gender',
-      description: 'Non-living cheezen',
+      description: 'Chotay bachay aur janwar, Non-living things, Collectie Nouns',
       color: 'bg-gray-50 border-gray-300',
       headerColor: 'bg-gray-500',
-      rule: 'Non-living cheezen → Neuter Gender'
+      rule: 'Chotay bachay aur janwar, Non-living things, Collectie Nouns → Neuter Gender'
     }
   ];
 
@@ -226,7 +226,7 @@ export default function EducationPage() {
             </div>
             <div className="flex items-start gap-2">
               <span className="text-gray-600 font-semibold">Neuter:</span>
-              <span>Non-living cheezen, Collective nouns, Chotay bachay</span>
+              <span>Chotay bachay aur janwar, Non-living things, Collectie Nouns, Collective nouns, Chotay bachay</span>
             </div>
           </div>
         </div>

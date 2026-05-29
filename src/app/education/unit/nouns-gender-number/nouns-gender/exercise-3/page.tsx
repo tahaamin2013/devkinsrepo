@@ -162,7 +162,7 @@ export default function Exercise3Page() {
         </div>
 
         {/* Exercise Area */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 sticky top-4">
           <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4 text-center">
             Convert Feminine to Masculine
           </h3>

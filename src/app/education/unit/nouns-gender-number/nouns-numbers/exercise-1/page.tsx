@@ -79,7 +79,7 @@ export default function NounsNumbersExercise1Page() {
   const score = submitted ? getScore() : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8 mt-30 pb-40">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8 mt-20 pb-40">
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <Link
@@ -133,7 +133,7 @@ export default function NounsNumbersExercise1Page() {
             return (
               <div
                 key={q.id}
-                className={`bg-white rounded-xl shadow-md p-6 ${
+                className={`bg-white rounded-xl shadow-md p-6 sticky top-4 ${
                   submitted
                     ? isCorrect
                       ? 'border-2 border-green-400'

@@ -71,18 +71,18 @@ export default function Exercise1Page() {
     {
       type: 'common',
       title: 'Common Gender',
-      description: 'Dono ke liye common',
+      description: 'Dono ke liye common (baby can also be common)',
       color: 'bg-purple-50 border-purple-300',
       headerColor: 'bg-purple-500',
-      rule: 'Dono ke liye common → Common Gender'
+      rule: 'Dono ke liye common → Common Gender (baby can also be common)'
     },
     {
       type: 'neuter',
       title: 'Neuter Gender',
-      description: 'Chotay bachay aur janwar, Non-living things, Collectie Nouns',
+      description: 'Chotay bachay aur janwar, Non-living things, Collective Nouns (baby can also be neuter)',
       color: 'bg-gray-50 border-gray-300',
       headerColor: 'bg-gray-500',
-      rule: 'Chotay bachay aur janwar, Non-living things, Collectie Nouns'
+      rule: 'Chotay bachay aur janwar, Non-living things, Collective Nouns (baby can also be neuter)'
     }
   ];
 
@@ -102,7 +102,9 @@ export default function Exercise1Page() {
     e.preventDefault();
     if (!draggedItem) return;
 
-    const isCorrect = draggedItem.correctGender === genderType;
+    // Check if correct - baby can be both common and neuter
+    const isCorrect = draggedItem.correctGender === genderType ||
+                     (draggedItem.word === 'Baby' && (genderType === 'common' || genderType === 'neuter'));
 
     // Check if item was previously placed and update score accordingly
     const previousPlacement = placedItems[draggedItem.id];
@@ -168,7 +170,7 @@ export default function Exercise1Page() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 md:p-8 pb-40">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 md:p-8 pb-40 mt-20">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
@@ -187,7 +189,7 @@ export default function Exercise1Page() {
             <div>
               <h3 className="font-semibold text-green-800 dark:text-green-400 mb-1">Exercise Description</h3>
               <p className="text-sm text-green-700 dark:text-green-300">
-                This exercise tests your ability to <strong>identify the gender of different nouns</strong>. You'll drag and drop words into the correct gender category: Masculine (male), Feminine (female), Common (applies to both), or Neuter (non-living). This helps you recognize gender patterns in English.
+                This exercise tests your ability to <strong>identify the gender of different nouns</strong>. You'll drag and drop words into the correct gender category: Masculine (male), Feminine (female), Common (applies to both), or Neuter (non-living). <strong>Note: "Baby" can be placed in both Common and Neuter gender categories.</strong> This helps you recognize gender patterns in English.
               </p>
               <div className="mt-2 p-2 bg-white dark:bg-gray-800 rounded border border-green-300 dark:border-green-600">
                 <p className="text-xs text-green-800 dark:text-green-300">
@@ -234,7 +236,7 @@ export default function Exercise1Page() {
         {/* Game Area */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
           {/* Word Bank */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-6 sticky top-4">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-6 sticky top-4 self-start">
             <h3 className="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-4">📝 Word Bank</h3>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
@@ -263,7 +265,7 @@ export default function Exercise1Page() {
               return (
                 <div
                   key={box.type}
-                  className={`sticky top-4 rounded-lg shadow-lg overflow-hidden ${box.color} border-4 h-125`}
+                  className={`sticky top-4 rounded-lg shadow-lg overflow-hidden ${box.color} border-4 h-auto max-h-96`}
                   onDragOver={handleDragOver}
                   onDrop={(e) => handleDrop(e, box.type)}
                 >
@@ -322,11 +324,11 @@ export default function Exercise1Page() {
             </div>
             <div className="flex items-start gap-2">
               <span className="text-purple-600 dark:text-purple-400 font-semibold text-sm">Common:</span>
-              <span className="text-gray-700 dark:text-gray-300 text-sm">Dono ke liye common</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Dono ke liye common (baby can also be common)</span>
             </div>
             <div className="flex items-start gap-2">
               <span className="text-gray-600 dark:text-gray-400 font-semibold text-sm">Neuter:</span>
-              <span className="text-gray-700 dark:text-gray-300 text-sm">Chotay bachay aur janwar, Non-living things, Collectie Nouns</span>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">Chotay bachay aur janwar, Non-living things, Collective Nouns (baby can also be neuter)</span>
             </div>
           </div>
         </div>

@@ -87,7 +87,7 @@ export default function Exercise2Page() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 md:p-8 pb-40">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 md:p-8 pb-40 mt-20">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
@@ -175,7 +175,7 @@ export default function Exercise2Page() {
               return (
                 <div
                   key={pair.id}
-                  className={`p-4 rounded-lg border-2 ${
+                  className={`p-4 rounded-lg border-2 sticky top-4 ${
                     submitted
                       ? correct
                         ? 'bg-green-50 dark:bg-green-900/20 border-green-400 dark:border-green-600'

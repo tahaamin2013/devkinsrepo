@@ -168,16 +168,20 @@ export default function EducationPage() {
     e.preventDefault();
     if (!draggedItem) return;
 
-    // Common gender words are correct in ANY box
-    const commonGenderWords = ['baby', 'child', 'companion', 'teacher', 'servant', 'bird', 'person', 'friend', 'helper'];
+    // Common gender words are correct in ANY box except baby
+    const commonGenderWords = ['child', 'companion', 'teacher', 'servant', 'bird', 'person', 'friend', 'helper'];
     const isCommonGenderWord = commonGenderWords.includes(draggedItem.id);
+
+    // Baby is correct only in common and neuter boxes
+    const isBaby = draggedItem.id === 'baby';
+    const isBabyCorrect = isBaby && (genderType === 'common' || genderType === 'neuter');
 
     // Baby animals are correct only in common and neuter boxes
     const babyAnimals = ['puppy', 'kitten'];
     const isBabyAnimal = babyAnimals.includes(draggedItem.id);
     const isBabyAnimalCorrect = isBabyAnimal && (genderType === 'common' || genderType === 'neuter');
 
-    const isCorrect = isCommonGenderWord || isBabyAnimalCorrect || draggedItem.correctGender === genderType;
+    const isCorrect = isCommonGenderWord || isBabyCorrect || isBabyAnimalCorrect || draggedItem.correctGender === genderType;
 
     // Check if item was previously placed and update score accordingly
     const previousPlacement = placedItems[draggedItem.id];
@@ -284,7 +288,7 @@ export default function EducationPage() {
         {/* Game Area */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
           {/* Word Bank with Categories */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-6">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-6 sticky top-4 self-start">
             <h3 className="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-4">📝 Word Bank</h3>
 
             {Object.entries(categorizedWords).map(([categoryKey, category]) => (
@@ -334,7 +338,7 @@ export default function EducationPage() {
               return (
                 <div
                   key={box.type}
-                  className={`sticky top-4 rounded-lg shadow-lg overflow-hidden ${box.color} border-4 h-125`}
+                  className={`sticky top-4 rounded-lg shadow-lg overflow-hidden ${box.color} border-4 h-auto max-h-96`}
                   onDragOver={handleDragOver}
                   onDrop={(e) => handleDrop(e, box.type)}
                 >
@@ -394,7 +398,7 @@ export default function EducationPage() {
             <div>
               <h3 className="font-bold text-purple-700 dark:text-purple-400 mb-2">Common Gender</h3>
               <p className="text-gray-700 dark:text-gray-300 mb-2 text-sm md:text-base">Jo noun male aur female dono ke liye use ho sakta ho, usay Common Gender kehte hain.</p>
-              <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Examples: baby, companion, teacher, person, friend, bird</p>
+              <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Examples: baby (can also be neuter), companion, teacher, person, friend, bird</p>
             </div>
             <div>
               <h3 className="font-bold text-gray-700 dark:text-gray-400 mb-2">Neuter Gender</h3>
@@ -406,7 +410,7 @@ export default function EducationPage() {
             <h4 className="font-semibold text-yellow-800 dark:text-yellow-400 mb-2 text-sm md:text-base">⚠️ Important Notes</h4>
             <ul className="list-disc list-inside text-xs md:text-sm text-gray-700 dark:text-gray-300 space-y-1">
               <li>Collective nouns (Team, Class, Army, Crowd) → Neuter Gender</li>
-              <li>Chotay bachay aur janwar (Baby, Child, Puppy, Kitten) → Neuter Gender</li>
+              <li>Chotay bachay aur janwar (Baby, Child, Puppy, Kitten) → Can be Common OR Neuter Gender</li>
               <li>Non-living things, places, ideas → Neuter Gender</li>
             </ul>
           </div>

@@ -233,7 +233,7 @@ export default function Exercise4Page() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 md:p-8 pb-40">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 md:p-8 pb-40 mt-20">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
@@ -316,7 +316,7 @@ export default function Exercise4Page() {
             return (
               <div
                 key={exercise.id}
-                className={`bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border-2 ${
+                className={`bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border-2 sticky top-4 ${
                   submitted
                     ? exerciseCorrect
                       ? 'border-green-400 dark:border-green-600'

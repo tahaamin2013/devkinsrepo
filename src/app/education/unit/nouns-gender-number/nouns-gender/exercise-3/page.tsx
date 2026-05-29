@@ -50,6 +50,18 @@ export default function Exercise3Page() {
     { id: '33', masculine: 'emperor', feminine: 'empress' },
     { id: '34', masculine: 'heir', feminine: 'heiress' },
     { id: '35', masculine: 'host', feminine: 'hostess' },
+    { id: '36', masculine: 'steward', feminine: 'stewardess' },
+    { id: '37', masculine: 'lion', feminine: 'lioness' },
+    { id: '38', masculine: 'poet', feminine: 'poetess' },
+    { id: '39', masculine: 'priest', feminine: 'priestess' },
+    { id: '40', masculine: 'shepherd', feminine: 'shepherdess' },
+    { id: '41', masculine: 'Jew', feminine: 'Jewess' },
+    { id: '42', masculine: 'grandfather', feminine: 'grandmother' },
+    { id: '43', masculine: 'peacock', feminine: 'peahen' },
+    { id: '44', masculine: 'manservant', feminine: 'maidservant' },
+    { id: '45', masculine: 'landlord', feminine: 'landlady' },
+    { id: '46', masculine: 'milkman', feminine: 'milkmaid' },
+    { id: '47', masculine: 'washerman', feminine: 'washerwoman' },
   ];
 
   const handleAnswerChange = (id: string, answer: string) => {

@@ -351,12 +351,12 @@ export default function Exercise4Page() {
                       </div>
                     </div>
 
-                    {/* Change Instructions */}
+                    {/* Change Instructions
                     <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 rounded-lg p-3">
                       <p className="text-sm text-yellow-800 dark:text-yellow-400">
                         <strong>Changes needed:</strong> {exercise.description}
                       </p>
-                    </div>
+                    </div> */}
 
                     {exerciseComplete && !submitted && (
                       <div className="mt-2 text-sm text-green-600 dark:text-green-400">

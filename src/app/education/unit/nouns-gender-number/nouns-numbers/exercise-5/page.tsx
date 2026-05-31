@@ -48,24 +48,74 @@ const tabs = [
     id: "other",
     label: "Other",
     icon: "📚",
-    words: ["annals", "thanks", "tidings", "Chattels", "Proceeds (of sale)", "Environs", "Nuptials", "Obsequies", "Assets"],
+    words: ["annals", "thanks", "tidings", "Chattels", "Proceeds (of sale)", "Environs", "Nuptials", "Obsequies", "Assets", "Alms", "Riches", "Eaves"],
     note: "Other nouns used only in plural form",
   },
 ];
+
+// ─── Meanings ─────────────────────────────────────────────────────────────────
+
+const wordMeaning: Record<string, string> = {
+  // Instruments
+  scissors:    "A cutting tool with two blades joined together",
+  tongs:       "A gripping tool with two arms used to pick up things",
+  pincers:     "A gripping tool used to hold or pull things tightly",
+  spectacles:  "Glasses worn on the face to help you see clearly",
+  binoculars:  "A device you look through to see distant things closer",
+  bellows:     "A device that blows air, used to fan a fire",
+  // Clothes
+  trousers:    "A piece of clothing that covers both legs",
+  jeans:       "Casual trousers made from denim fabric",
+  shorts:      "Short trousers that end above the knee",
+  pyjamas:     "Loose clothes worn for sleeping",
+  tights:      "A tight-fitting garment covering the legs and lower body",
+  drawers:     "An old word for underpants or underwear",
+  breeches:    "Short trousers fastened just below the knee",
+  // Diseases
+  measles:     "A contagious illness causing red spots on the skin",
+  mumps:       "An illness that causes swelling around the jaw and neck",
+  rickets:     "A bone disease caused by lack of vitamin D",
+  // Games
+  billiards:   "A game played with balls and a stick on a cloth-covered table",
+  draughts:    "A board game played by moving round pieces diagonally",
+  darts:       "A game where you throw small pointed objects at a round board",
+  cards:       "Games played using a deck of playing cards",
+  dominoes:    "A game played with flat rectangular tiles marked with dots",
+  marbles:     "A game played with small glass balls on the ground",
+  // Subjects
+  mathematics: "The study of numbers, shapes, and calculations",
+  physics:     "The study of matter, energy, and how the universe works",
+  electronics: "The study of circuits and devices that use electricity",
+  // News
+  news:        "Information about recent events happening in the world",
+  // Other
+  annals:      "A record of events written down year by year",
+  thanks:      "Words or feelings of gratitude expressed to someone",
+  tidings:     "News or information about something that has happened",
+  chattels:    "Personal belongings and movable property that you own",
+  alms:        "Money or food given to poor people as charity",
+  riches:      "A large amount of money or valuable possessions",
+  eaves:       "The lower edges of a roof that hang over the walls",
+  "proceeds (of sale)": "The money received from selling something",
+  environs:    "The surrounding area or neighbourhood around a place",
+  nuptials:    "Events and ceremonies connected with a wedding",
+  obsequies:   "The ceremonies and rituals carried out at a funeral",
+  assets:      "Valuable things a person or company owns",
+};
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function cap(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 const wordEmoji: Record<string, string> = {
-  // Instruments
   scissors:    "✂️",
   tongs:       "🥢",
   pincers:     "🦞",
   spectacles:  "👓",
   binoculars:  "🔭",
   bellows:     "💨",
-  // Clothes
   trousers:    "👔",
   jeans:       "👖",
   shorts:      "🩳",
@@ -73,28 +123,26 @@ const wordEmoji: Record<string, string> = {
   tights:      "🩱",
   drawers:     "🗄️",
   breeches:    "🐴",
-  // Diseases
   measles:     "🤧",
   mumps:       "😮‍💨",
   rickets:     "🦴",
-  // Games
   billiards:   "🎱",
   draughts:    "♟️",
   darts:       "🎯",
   cards:       "🃏",
   dominoes:    "🁣",
   marbles:     "🔮",
-  // Subjects
   mathematics: "📐",
   physics:     "⚛️",
   electronics: "💡",
-  // News
   news:        "📰",
-  // Other
   annals:      "📜",
   thanks:      "🙏",
   tidings:     "📣",
   chattels:    "🏠",
+  alms:        "🙏",
+  riches:      "💰",
+  eaves:       "🏠",
   "proceeds (of sale)": "💰",
   environs:    "🌳",
   nuptials:    "💍",
@@ -118,10 +166,8 @@ function toSingular(str: string): string {
   return cap(trimmed);
 }
 
-// Build dropdown options for a word: [singular]s, [singular], no singular
 function getDropdownOptions(word: string): { label: string; value: string }[] {
   const singular = toSingular(word);
-  const plural = cap(word);
   return [
     { label: `${singular}s`, value: "plural_form" },
     { label: singular,       value: "singular_form" },
@@ -135,7 +181,6 @@ export default function NounsPage() {
   const [activeTab, setActiveTab]   = useState<string>("instruments");
   const [dark, setDark]             = useState<boolean>(false);
   const [animKey, setAnimKey]       = useState<number>(0);
-  // dropdown selections keyed by "tabId:wordIndex"
   const [selections, setSelections] = useState<Record<string, string>>({});
 
   useEffect(() => {
@@ -154,7 +199,6 @@ export default function NounsPage() {
     return `${activeTab}:${idx}:${word}`;
   }
 
-  // Dropdown: correct answer is "no_singular" because these words have no singular
   function dropdownStatus(word: string, idx: number): "empty" | "correct" | "wrong" {
     const val = selections[rowKey(word, idx)];
     if (!val) return "empty";
@@ -166,7 +210,7 @@ export default function NounsPage() {
 
       {/* ── Top bar ── */}
       <header className="sticky top-0 z-20 border-b border-gray-200 dark:border-white/10 bg-white/90 dark:bg-[#1C1917]/90 backdrop-blur-md">
-        <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
+        <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <span className="text-xl">📖</span>
             <h1 className="text-base font-bold tracking-tight text-gray-900 dark:text-white">
@@ -186,7 +230,7 @@ export default function NounsPage() {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 py-8 space-y-6">
+      <main className="max-w-5xl mx-auto px-4 py-8 space-y-6">
 
         {/* ── Tab strip ── */}
         <nav className="flex flex-wrap gap-2">
@@ -227,8 +271,8 @@ export default function NounsPage() {
             </span>
           </div>
 
-          {/* Column headers */}
-          <div className="grid grid-cols-2 bg-gray-50 dark:bg-white/[0.03] border-b border-gray-200 dark:border-white/8">
+          {/* Column headers — 3 cols */}
+          <div className="grid grid-cols-3 bg-gray-50 dark:bg-white/[0.03] border-b border-gray-200 dark:border-white/8">
             <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 flex items-center gap-1.5">
               <span className="w-4 h-4 rounded-full bg-gray-300 dark:bg-white/20 flex items-center justify-center text-gray-600 dark:text-white/60 text-[9px] font-black">?</span>
               Choose Singular
@@ -237,17 +281,21 @@ export default function NounsPage() {
               <span className="w-4 h-4 rounded-full bg-[#1C1917] dark:bg-white flex items-center justify-center text-white dark:text-[#1C1917] text-[9px] font-black">✓</span>
               Plural
             </div>
+            <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 border-l border-gray-200 dark:border-white/8 flex items-center gap-1.5">
+              <span className="w-4 h-4 rounded-full bg-amber-400 dark:bg-amber-500 flex items-center justify-center text-white text-[9px] font-black">💡</span>
+              Meaning
+            </div>
           </div>
 
           {/* Word rows */}
           <div className="divide-y divide-gray-100 dark:divide-white/6 bg-white dark:bg-[#1C1917]">
             {active.words.map((word, i) => {
-              const key       = rowKey(word, i);
-              const selVal    = selections[key] ?? "";
-              const dStatus   = dropdownStatus(word, i);
-              const opts      = getDropdownOptions(word);
+              const key     = rowKey(word, i);
+              const selVal  = selections[key] ?? "";
+              const dStatus = dropdownStatus(word, i);
+              const opts    = getDropdownOptions(word);
+              const meaning = wordMeaning[word.toLowerCase()] ?? "—";
 
-              // border/text color helpers
               const dBorder = dStatus === "correct"
                 ? "border-green-400 dark:border-green-600 text-green-600 dark:text-green-400"
                 : dStatus === "wrong"
@@ -266,7 +314,7 @@ export default function NounsPage() {
               return (
                 <div
                   key={word}
-                  className="grid grid-cols-2 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors"
+                  className="grid grid-cols-3 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors"
                 >
 
                   {/* ── Col 1: Dropdown ── */}
@@ -298,7 +346,7 @@ export default function NounsPage() {
                     </div>
                   </div>
 
-                  {/* ── Col 2: Plural (answer) ── */}
+                  {/* ── Col 2: Plural ── */}
                   <div className="px-4 py-4 flex items-center gap-2.5 border-l border-gray-100 dark:border-white/6">
                     <span className="w-6 h-6 shrink-0 rounded-full bg-[#1C1917] dark:bg-white flex items-center justify-center">
                       <span className="text-white dark:text-[#1C1917] text-xs font-black">✓</span>
@@ -312,6 +360,14 @@ export default function NounsPage() {
                     <span className="ml-auto text-[10px] font-bold uppercase px-1.5 py-0.5 rounded-full bg-gray-100 dark:bg-white/8 text-gray-400 dark:text-gray-500 border border-gray-200 dark:border-white/10">
                       plural
                     </span>
+                  </div>
+
+                  {/* ── Col 3: Meaning ── */}
+                  <div className="px-4 py-4 flex items-start gap-2 border-l border-gray-100 dark:border-white/6">
+                    <span className="mt-0.5 text-sm leading-none">💡</span>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-snug">
+                      {meaning}
+                    </p>
                   </div>
 
                 </div>
@@ -365,4 +421,4 @@ export default function NounsPage() {
       `}</style>
     </div>
   );
-} 
+}

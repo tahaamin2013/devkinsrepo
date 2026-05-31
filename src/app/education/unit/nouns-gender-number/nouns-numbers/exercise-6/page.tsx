@@ -73,6 +73,35 @@ const categories: Category[] = [
   },
 ];
 
+// ─── Meanings ─────────────────────────────────────────────────────────────────
+
+const wordMeaning: Record<string, string> = {
+  // Latin
+  erratum:     "A mistake found in a printed book or document",
+  formula:     "A rule or set of steps used to solve a problem",
+  index:       "A list at the back of a book showing where topics appear",
+  memorandum:  "A short written note sent within an organisation",
+  radius:      "The distance from the centre of a circle to its edge",
+  terminus:    "The last stop at the end of a bus or train route",
+  // Greek
+  axis:        "An imaginary straight line that something spins around",
+  parenthesis: "A word or phrase added inside brackets as extra information",
+  crisis:      "A time of serious danger or difficulty",
+  hypothesis:  "An idea or guess that you test to see if it is true",
+  basis:       "The main reason or starting point for something",
+  phenomenon:  "Something remarkable or unusual that actually happens",
+  analysis:    "A careful study of something to understand it better",
+  criterion:   "A standard used to judge or decide something",
+  // Italian
+  bandit:      "An armed robber who attacks people, especially on roads",
+  // French
+  madame:      "A polite title used for a woman, similar to Mrs",
+  monsieur:    "A polite title used for a man in French, similar to Mr",
+  // Hebrew
+  cherub:      "An angel shown in art as a chubby child with wings",
+  seraph:      "A high-ranking angel described in religious texts",
+};
+
 // ─── Emoji map ────────────────────────────────────────────────────────────────
 
 const wordEmoji: Record<string, string> = {
@@ -103,21 +132,12 @@ function cap(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-/**
- * Extract the anglicized plural from the alt string if it follows
- * the pattern "or <word>" — e.g. "or formulas" → "formulas"
- */
 function getAltPlural(word: Word): string | null {
   if (!word.alt) return null;
   const match = word.alt.match(/^or\s+(\S+)$/i);
   return match ? match[1].toLowerCase() : null;
 }
 
-/**
- * Returns true if the selected dropdown value counts as correct.
- * "correct"     = classical plural (always correct)
- * "alt_correct" = anglicized plural (correct only when alt is "or <word>")
- */
 function isCorrectAnswer(value: string, word: Word): boolean {
   if (value === "correct") return true;
   if (value === "alt_correct" && getAltPlural(word) !== null) return true;
@@ -128,21 +148,17 @@ function getDropdownOptions(word: Word): { label: string; value: string }[] {
   const altPlural = getAltPlural(word);
   const options: { label: string; value: string }[] = [];
 
-  // Classical plural — always first and always correct
   options.push({ label: cap(word.plural), value: "correct" });
 
-  // Anglicized plural — correct when alt follows "or <word>" pattern
   if (altPlural) {
     options.push({ label: cap(altPlural), value: "alt_correct" });
   }
 
-  // Plain "-s" form — only add if it isn't already the altPlural
   const addedS = `${word.singular}s`;
   if (!altPlural || altPlural.toLowerCase() !== addedS.toLowerCase()) {
     options.push({ label: cap(addedS), value: "added_s" });
   }
 
-  // No plural option
   options.push({ label: "No plural", value: "no_plural" });
 
   return options;
@@ -198,7 +214,7 @@ export default function ForeignPluralsPage() {
 
       {/* ── Top bar ── */}
       <header className="sticky top-0 z-20 border-b border-gray-200 dark:border-white/10 bg-white/90 dark:bg-[#1C1917]/90 backdrop-blur-md">
-        <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
+        <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <span className="text-xl">🌍</span>
             <h1 className="text-base font-bold tracking-tight text-gray-900 dark:text-white">
@@ -218,7 +234,7 @@ export default function ForeignPluralsPage() {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 py-8 space-y-6">
+      <main className="max-w-5xl mx-auto px-4 py-8 space-y-6">
 
         {/* ── Rule banner ── */}
         <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.03] px-5 py-4 flex items-start gap-3">
@@ -280,8 +296,8 @@ export default function ForeignPluralsPage() {
             </span>
           </div>
 
-          {/* Column headers */}
-          <div className="grid grid-cols-2 bg-gray-50 dark:bg-white/[0.03] border-b border-gray-200 dark:border-white/8">
+          {/* Column headers — 3 cols */}
+          <div className="grid grid-cols-3 bg-gray-50 dark:bg-white/[0.03] border-b border-gray-200 dark:border-white/8">
             <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 flex items-center gap-1.5">
               <span className="w-4 h-4 rounded-full bg-[#1C1917] dark:bg-white flex items-center justify-center text-white dark:text-[#1C1917] text-[9px] font-black">1</span>
               Singular
@@ -289,6 +305,10 @@ export default function ForeignPluralsPage() {
             <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 border-l border-gray-200 dark:border-white/8 flex items-center gap-1.5">
               <span className="w-4 h-4 rounded-full bg-gray-300 dark:bg-white/20 flex items-center justify-center text-gray-600 dark:text-white/60 text-[9px] font-black">?</span>
               Choose Plural
+            </div>
+            <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 border-l border-gray-200 dark:border-white/8 flex items-center gap-1.5">
+              <span className="w-4 h-4 rounded-full bg-amber-400 dark:bg-amber-500 flex items-center justify-center text-white text-[9px] font-black">💡</span>
+              Meaning
             </div>
           </div>
 
@@ -299,7 +319,7 @@ export default function ForeignPluralsPage() {
               const selVal  = selections[key] ?? "";
               const dStatus = dropdownStatus(i);
               const opts    = getDropdownOptions(word);
-              const hasAlt  = getAltPlural(word) !== null;
+              const meaning = wordMeaning[word.singular] ?? "—";
 
               const dBorder = dStatus === "correct"
                 ? "border-green-400 dark:border-green-600 text-green-600 dark:text-green-400"
@@ -310,23 +330,16 @@ export default function ForeignPluralsPage() {
               return (
                 <div
                   key={`${word.singular}-${i}`}
-                  className="grid grid-cols-2 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors"
+                  className="grid grid-cols-3 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors"
                 >
                   {/* Col 1: Singular */}
                   <div className="px-4 py-4 flex items-center gap-2.5">
                     <span className="text-xl leading-none">
                       {wordEmoji[word.singular] ?? "📖"}
                     </span>
-                    <div>
-                      <span className="text-base font-semibold text-gray-900 dark:text-white tracking-wide">
-                        {cap(word.singular)}
-                      </span>
-                      {hasAlt && (
-                        <p className="text-[11px] text-blue-500 dark:text-blue-400 font-medium mt-0.5">
-                          ✦ two correct forms
-                        </p>
-                      )}
-                    </div>
+                    <span className="text-base font-semibold text-gray-900 dark:text-white tracking-wide">
+                      {cap(word.singular)}
+                    </span>
                   </div>
 
                   {/* Col 2: Dropdown quiz */}
@@ -360,6 +373,14 @@ export default function ForeignPluralsPage() {
                       </select>
                       <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 dark:text-white/30 text-xs">▾</span>
                     </div>
+                  </div>
+
+                  {/* Col 3: Meaning */}
+                  <div className="px-4 py-4 flex items-start gap-2 border-l border-gray-100 dark:border-white/6">
+                    <span className="mt-0.5 text-sm leading-none">💡</span>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-snug">
+                      {meaning}
+                    </p>
                   </div>
                 </div>
               );

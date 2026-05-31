@@ -172,7 +172,7 @@ export default function NounsGenderNumberPage() {
                   </svg>
                 </div>
                </Link>
-                {/* <Link
+               <Link
                 href="/education/unit/nouns-gender-number/nouns-numbers/exercise-6"
                 className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
               >
@@ -182,7 +182,7 @@ export default function NounsGenderNumberPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
-              </Link> */}
+              </Link> 
             </div>
           </div>
         </div>

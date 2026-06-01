@@ -38,9 +38,9 @@ function getSingular(plural: string): string {
 function getDropdownOptions(plural: string) {
   const singular = getSingular(plural);
   return [
-    { label: plural,          value: "plural"      },
-    { label: singular,        value: "singular"    },
-    { label: "No singular",   value: "no_singular" },
+    { label: plural,        value: "plural"      },
+    { label: singular,      value: "singular"    },
+    { label: "No singular", value: "no_singular" },
   ];
 }
 
@@ -69,9 +69,9 @@ function ScoreBadge({ correct, total }: { correct: number; total: number }) {
   );
 }
 
-// ─── Main Page ────────────────────────────────────────────────────────────────
+// ─── Main Component ───────────────────────────────────────────────────────────
 
-export default function NounsPluralPage() {
+export default function NounsPluralPage1() {
   const [dark, setDark] = useState<boolean>(false);
   const [answers, setAnswers] = useState<Record<string, string>>(() =>
     Object.fromEntries(nouns.map((n) => [n.plural, ""]))
@@ -97,49 +97,12 @@ export default function NounsPluralPage() {
   return (
     <div className="min-h-screen transition-colors duration-300 bg-white dark:bg-[#1C1917] font-sans">
 
-      {/* ── Top bar ── */}
-      <header className="sticky top-0 z-20 border-b border-gray-200 dark:border-white/10 bg-white/90 dark:bg-[#1C1917]/90 backdrop-blur-md">
-        <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
-            <span className="text-xl">📖</span>
-            <h1 className="text-base font-bold tracking-tight text-gray-900 dark:text-white">
-              Nouns With Different Meanings in Plural
-            </h1>
-            <span className="hidden sm:inline text-xs px-2 py-0.5 rounded-full bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400">
-              English Grammar
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <ScoreBadge correct={correctCount} total={totalFields} />
-            <button
-              onClick={() => setDark((d) => !d)}
-              aria-label="Toggle theme"
-              className="w-8 h-8 rounded-full flex items-center justify-center border border-gray-200 dark:border-white/15 bg-gray-50 dark:bg-white/8 hover:scale-105 active:scale-95 transition-transform text-sm shadow-sm"
-            >
-              {dark ? "☀️" : "🌙"}
-            </button>
-          </div>
-        </div>
-      </header>
+
 
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-6">
 
         {/* ── Rule banner ── */}
-        <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.03] px-5 py-4 flex items-start gap-3">
-          <span className="text-2xl leading-none mt-0.5">💡</span>
-          <div>
-            <p className="text-sm font-semibold text-gray-800 dark:text-white">Rule — Plural with Different Meaning</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
-              Some nouns have a{" "}
-              <span className="font-semibold text-gray-700 dark:text-gray-200">
-                different meaning in the plural
-              </span>
-              . Choose the correct option for each — these plurals have{" "}
-              <span className="font-semibold text-gray-700 dark:text-gray-200">no singular</span>{" "}
-              in this sense.
-            </p>
-          </div>
-        </div>
+  
 
         {/* ── All correct celebration ── */}
         {allCorrect && (
@@ -164,7 +127,7 @@ export default function NounsPluralPage() {
             <span className="text-4xl leading-none">📝</span>
             <div className="flex-1 min-w-0">
               <h2 className="text-xl font-bold text-white tracking-tight">
-                Select the Correct Option
+                Select the Correct Singular Form
               </h2>
               <p className="text-gray-400 text-sm mt-0.5">
                 Choose the right form — these plurals have no singular in this sense
@@ -234,9 +197,8 @@ export default function NounsPluralPage() {
                   key={plural}
                   className="grid grid-cols-2 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors"
                 >
-                  {/* ── Col 1 (left): Dropdown ── */}
+                  {/* Col 1: Dropdown */}
                   <div className="px-4 py-4 flex items-center gap-2">
-                    {/* Status icon */}
                     <span
                       className={`w-5 h-5 shrink-0 text-sm font-bold flex items-center justify-center transition-all duration-200 ${statusColor} ${
                         state === "empty" ? "opacity-0" : "opacity-100"
@@ -244,8 +206,6 @@ export default function NounsPluralPage() {
                     >
                       {statusIcon}
                     </span>
-
-                    {/* Select */}
                     <div className="relative flex-1">
                       <select
                         value={val}
@@ -257,11 +217,7 @@ export default function NounsPluralPage() {
                           ${!val ? "text-gray-400 dark:text-white/30" : ""}
                         `}
                       >
-                        <option
-                          value=""
-                          disabled
-                          className="bg-white dark:bg-[#1C1917] text-gray-400"
-                        >
+                        <option value="" disabled className="bg-white dark:bg-[#1C1917] text-gray-400">
                           Choose…
                         </option>
                         {opts.map((o) => (
@@ -280,7 +236,7 @@ export default function NounsPluralPage() {
                     </div>
                   </div>
 
-                  {/* ── Col 2 (right): Plural + Meaning (always visible) ── */}
+                  {/* Col 2: Plural + Meaning */}
                   <div className="px-4 py-4 border-l border-gray-100 dark:border-white/6 flex flex-col gap-1 justify-center">
                     <span className="text-base font-semibold text-gray-900 dark:text-white tracking-wide">
                       {plural}

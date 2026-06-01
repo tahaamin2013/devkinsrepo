@@ -139,23 +139,13 @@ export default function NounsGenderNumberPage() {
                   </svg>
                 </div>
               </Link>
-                  <Link
-                href="/education/unit/nouns-gender-number/nouns-numbers/exercise-3"
-                className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold">Exercise 3</span>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </Link>
+              
                 <Link
                 href="/education/unit/nouns-gender-number/nouns-numbers/exercise-4"
                 className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold">Exercise 4</span>
+                  <span className="font-semibold">Exercise 3</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -166,7 +156,7 @@ export default function NounsGenderNumberPage() {
                 className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold">Exercise 5</span>
+                  <span className="font-semibold">Exercise 4</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -177,7 +167,7 @@ export default function NounsGenderNumberPage() {
                 className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold">Exercise 6</span>
+                  <span className="font-semibold">Exercise 5</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -188,7 +178,7 @@ export default function NounsGenderNumberPage() {
                 className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold">Exercise 7</span>
+                  <span className="font-semibold">Exercise 6</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -199,7 +189,7 @@ export default function NounsGenderNumberPage() {
                 className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold">Exercise 8</span>
+                  <span className="font-semibold">Exercise 7</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -210,7 +200,7 @@ export default function NounsGenderNumberPage() {
                 className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold">Exercise 9</span>
+                  <span className="font-semibold">Exercise 8</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -221,7 +211,7 @@ export default function NounsGenderNumberPage() {
                 className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold">Exercise 10</span>
+                  <span className="font-semibold">Exercise 9</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -232,7 +222,7 @@ export default function NounsGenderNumberPage() {
                 className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold">Exercise 11</span>
+                  <span className="font-semibold">Exercise 10</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -243,7 +233,7 @@ export default function NounsGenderNumberPage() {
                 className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold">Exercise 12</span>
+                  <span className="font-semibold">Exercise 11</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>

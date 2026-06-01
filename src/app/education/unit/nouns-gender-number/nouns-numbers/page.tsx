@@ -22,33 +22,61 @@ export default function NounsNumbersPage() {
           <h1 className="text-3xl font-bold text-gray-900 mb-6">Nouns – Numbers</h1>
 
           <div className="prose prose-lg max-w-none">
-            <p className="text-gray-700 leading-relaxed mb-4">
-              Number indicates whether a noun is singular (one) or plural (more than one).
-            </p>
-            <p className="text-gray-700 leading-relaxed mb-4">
-              <strong>Singular nouns</strong> refer to one person, place, thing, or idea.
-            </p>
-            <p className="text-gray-700 leading-relaxed mb-4">
-              <strong>Plural nouns</strong> refer to more than one person, place, thing, or idea.
-            </p>
-            <p className="text-gray-700 leading-relaxed mb-4 font-semibold">
-              Rules for forming plurals:
-            </p>
-            <ul className="text-gray-700 leading-relaxed mb-4">
-              <li>Most nouns: add -s (cat → cats, dog → dogs)</li>
-              <li>Nouns ending in -s, -x, -z, -ch, -sh: add -es (bus → buses, box → boxes)</li>
-              <li>Nouns ending in consonant + y: change y to i and add -es (baby → babies)</li>
-              <li>Nouns ending in vowel + y: add -s (boy → boys, day → days)</li>
-              <li>Nouns ending in -f or -fe: change to -ves (leaf → leaves, knife → knives)</li>
-              <li>Irregular plurals: man → men, woman → women, child → children, foot → feet</li>
-            </ul>
+            {/* Abstract Nouns */}
+            <div className="bg-purple-50 rounded-lg p-5 mb-5">
+              <h4 className="text-lg font-bold text-purple-900 mb-3">9. Abstract Nouns</h4>
+              <p className="text-gray-700 mb-3">
+                Usually have no plural (uncountable).
+              </p>
+              <p className="text-gray-700 font-semibold mb-2">Examples</p>
+              <ul className="text-gray-700 ml-5 mb-3">
+                <li>hope</li>
+                <li>charity</li>
+                <li>love</li>
+                <li>kindness</li>
+              </ul>
+              <div className="bg-white rounded p-3 border-l-4 border-purple-400">
+                <p className="text-sm text-gray-600">
+                  <span className="font-semibold">When pluralized, they refer to individual acts:</span>
+                </p>
+                <ul className="text-sm text-gray-600 ml-5 mt-2">
+                  <li><span className="italic">kindnesses</span> = acts of kindness</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Material Nouns */}
+            <div className="bg-amber-50 rounded-lg p-5 mb-5">
+              <h4 className="text-lg font-bold text-amber-900 mb-3">10. Material Nouns (Names of Substances)</h4>
+              <p className="text-gray-700 mb-3">
+                Usually have no plural (uncountable).
+              </p>
+              <p className="text-gray-700 font-semibold mb-2">Examples</p>
+              <ul className="text-gray-700 ml-5 mb-3">
+                <li>copper</li>
+                <li>iron</li>
+                <li>tin</li>
+                <li>wood</li>
+              </ul>
+              <div className="bg-white rounded p-3 border-l-4 border-amber-400">
+                <p className="text-sm text-gray-600">
+                  <span className="font-semibold">When used in plural, meanings change:</span>
+                </p>
+                <ul className="text-sm text-gray-600 ml-5 mt-2">
+                  <li><span className="italic">coppers</span> = copper coins</li>
+                  <li><span className="italic">irons</span> = fetters/chains</li>
+                  <li><span className="italic">tins</span> = cans made of tin</li>
+                  <li><span className="italic">woods</span> = forests</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           {/* Practice Section */}
           <div className="mt-8 p-6 bg-blue-50 rounded-xl">
             <h2 className="text-xl font-semibold text-gray-800 mb-4">Practice Exercises</h2>
             <p className="text-gray-600 mb-4">Test your understanding with these exercises:</p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <Link
                 href="/education/unit/nouns-gender-number/nouns-numbers/exercise-1"
                 className="bg-white text-blue-600 rounded-lg p-4 text-center font-semibold hover:bg-blue-100 transition-colors border-2 border-blue-200"
@@ -60,6 +88,42 @@ export default function NounsNumbersPage() {
                 className="bg-white text-blue-600 rounded-lg p-4 text-center font-semibold hover:bg-blue-100 transition-colors border-2 border-blue-200"
               >
                 Exercise 2
+              </Link>
+              <Link
+                href="/education/unit/nouns-gender-number/nouns-numbers/exercise-3"
+                className="bg-white text-blue-600 rounded-lg p-4 text-center font-semibold hover:bg-blue-100 transition-colors border-2 border-blue-200"
+              >
+                Exercise 3
+              </Link>
+              <Link
+                href="/education/unit/nouns-gender-number/nouns-numbers/exercise-4"
+                className="bg-white text-blue-600 rounded-lg p-4 text-center font-semibold hover:bg-blue-100 transition-colors border-2 border-blue-200"
+              >
+                Exercise 4
+              </Link>
+              <Link
+                href="/education/unit/nouns-gender-number/nouns-numbers/exercise-5"
+                className="bg-white text-blue-600 rounded-lg p-4 text-center font-semibold hover:bg-blue-100 transition-colors border-2 border-blue-200"
+              >
+                Exercise 5
+              </Link>
+              <Link
+                href="/education/unit/nouns-gender-number/nouns-numbers/exercise-6"
+                className="bg-white text-blue-600 rounded-lg p-4 text-center font-semibold hover:bg-blue-100 transition-colors border-2 border-blue-200"
+              >
+                Exercise 6
+              </Link>
+              <Link
+                href="/education/unit/nouns-gender-number/nouns-numbers/exercise-7"
+                className="bg-white text-blue-600 rounded-lg p-4 text-center font-semibold hover:bg-blue-100 transition-colors border-2 border-blue-200"
+              >
+                Exercise 7
+              </Link>
+              <Link
+                href="/education/unit/nouns-gender-number/nouns-numbers/exercise-8"
+                className="bg-white text-blue-600 rounded-lg p-4 text-center font-semibold hover:bg-blue-100 transition-colors border-2 border-blue-200"
+              >
+                Exercise 8
               </Link>
             </div>
           </div>

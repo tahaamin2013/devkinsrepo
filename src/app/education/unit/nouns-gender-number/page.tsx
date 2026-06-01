@@ -106,8 +106,8 @@ export default function NounsGenderNumberPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
-              </Link>
-            </div>
+              </Link>      
+                 </div>
           </div>
 
           {/* Nouns - Numbers */}
@@ -183,6 +183,73 @@ export default function NounsGenderNumberPage() {
                   </svg>
                 </div>
               </Link> 
+                     <Link
+                href="/education/unit/nouns-gender-number/nouns-numbers/exercise-7"
+                className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold">Exercise 7</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </Link> 
+                         <Link
+                href="/education/unit/nouns-gender-number/nouns-numbers/exercise-8"
+                className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold">Exercise 8</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </Link>
+              <Link
+                href="/education/unit/nouns-gender-number/nouns-numbers/exercise-9"
+                className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold">Exercise 9</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </Link>
+              <Link
+                href="/education/unit/nouns-gender-number/nouns-numbers/exercise-10"
+                className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold">Exercise 10</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </Link>
+              <Link
+                href="/education/unit/nouns-gender-number/nouns-numbers/exercise-11"
+                className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold">Exercise 11</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </Link>
+              <Link
+                href="/education/unit/nouns-gender-number/nouns-numbers/exercise-12"
+                className="block w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold">Exercise 12</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </Link>      
+
             </div>
           </div>
         </div>

@@ -51,6 +51,13 @@ const tabs = [
     words: ["annals", "thanks", "tidings", "Chattels", "Proceeds (of sale)", "Environs", "Nuptials", "Obsequies", "Assets", "Alms", "Riches", "Eaves"],
     note: "Other nouns used only in plural form",
   },
+  {
+    id: "collective",
+    label: "Collective Nouns",
+    icon: "👥",
+    words: ["poultry", "cattle", "vermin", "people", "Gentry"],
+    note: "Collective nouns that look plural but can take singular or plural verbs",
+  },
 ];
 
 // ─── Meanings ─────────────────────────────────────────────────────────────────
@@ -101,6 +108,12 @@ const wordMeaning: Record<string, string> = {
   nuptials:    "Events and ceremonies connected with a wedding",
   obsequies:   "The ceremonies and rituals carried out at a funeral",
   assets:      "Valuable things a person or company owns",
+  // Collective Nouns
+  poultry:     "Domestic birds like chickens, ducks, and turkeys kept for food or eggs",
+  cattle:      "Cows and bulls kept on a farm for meat or milk",
+  vermin:      "Pests like rats, mice, or insects that are harmful or annoying",
+  people:      "Human beings in general or persons considered collectively",
+  gentry:      "People of a high social class or aristocratic background",
 };
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -148,6 +161,12 @@ const wordEmoji: Record<string, string> = {
   nuptials:    "💍",
   obsequies:   "⚰️",
   assets:      "💎",
+  // Collective Nouns
+  poultry:     "🐔",
+  cattle:      "🐄",
+  vermin:      "🐀",
+  people:      "👥",
+  gentry:      "🎩",
 };
 
 function toSingular(str: string): string {

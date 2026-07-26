@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const grammarUnits = [
   { id: 1, title: 'Nouns – Gender and Number', slug: 'nouns-gender-number', hasContent: true },
-  { id: 2, title: 'Nouns – Case', slug: 'nouns-case', hasContent: false },
+  { id: 2, title: 'Nouns – Case', slug: 'nouns-case', hasContent: true },
   { id: 3, title: 'Pronouns', slug: 'pronouns', hasContent: false },
   { id: 4, title: 'Adjectives', slug: 'adjectives', hasContent: false },
   { id: 5, title: 'Articles', slug: 'articles', hasContent: false },

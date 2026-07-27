@@ -39,11 +39,10 @@ const practice: PracticeRow[] = [
   { original: "Get me a taxi.", direct: "a taxi", indirect: "me", rewritten: "Get a taxi for me." },
 ];
 
-const fieldKeys = ["original", "direct", "indirect", "rewritten"] as const;
+const fieldKeys = ["direct", "indirect", "rewritten"] as const;
 type FieldKey = (typeof fieldKeys)[number];
 
 const fieldPlaceholders: Record<FieldKey, string> = {
-  original: "Type the original sentence…",
   direct: "Type the direct object…",
   indirect: "Type the indirect object…",
   rewritten: "Rewrite with to/for…",
@@ -84,7 +83,7 @@ export default function DirectIndirectObjectPage() {
   const [dark, setDark] = useState<boolean>(false);
   const [answers, setAnswers] = useState<Record<number, Record<FieldKey, string>>>(() =>
     Object.fromEntries(
-      practice.map((_, i) => [i, { original: "", direct: "", indirect: "", rewritten: "" }])
+      practice.map((_, i) => [i, { direct: "", indirect: "", rewritten: "" }])
     )
   );
 
@@ -171,7 +170,7 @@ export default function DirectIndirectObjectPage() {
 
           <div className="grid grid-cols-4 bg-gray-50 dark:bg-white/[0.03] border-b border-gray-200 dark:border-white/8">
             <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-              Indirect before Direct
+              Indirect object before Direct object
             </div>
             <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 border-l border-gray-200 dark:border-white/8">
               Direct Object
@@ -180,7 +179,7 @@ export default function DirectIndirectObjectPage() {
               Indirect Object
             </div>
             <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-indigo-500 dark:text-indigo-400 border-l border-gray-200 dark:border-white/8">
-              Indirect after Direct
+              Indirect Object after the Direct Object
             </div>
           </div>
 
@@ -227,7 +226,7 @@ export default function DirectIndirectObjectPage() {
             <div className="flex-1 min-w-0">
               <h2 className="text-xl font-bold text-white tracking-tight">Fill In the Table</h2>
               <p className="text-gray-400 text-sm mt-0.5">
-                Fill in all four columns for each sentence
+                Fill in the Direct Object, Indirect Object, and rewritten sentence for each row
               </p>
             </div>
             <span className="text-gray-400 dark:text-gray-500 text-sm font-semibold bg-white/10 dark:bg-white/8 rounded-full px-2.5 py-0.5">
@@ -237,7 +236,7 @@ export default function DirectIndirectObjectPage() {
 
           <div className="grid grid-cols-4 bg-gray-50 dark:bg-white/[0.03] border-b border-gray-200 dark:border-white/8">
             <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-indigo-500 dark:text-indigo-400">
-              Indirect before Direct
+              Indirect object before Direct object
             </div>
             <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-indigo-500 dark:text-indigo-400 border-l border-gray-200 dark:border-white/8">
               Direct Object
@@ -246,7 +245,7 @@ export default function DirectIndirectObjectPage() {
               Indirect Object
             </div>
             <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-indigo-500 dark:text-indigo-400 border-l border-gray-200 dark:border-white/8">
-              Indirect after Direct
+              Indirect Object after the Direct Object
             </div>
           </div>
 
@@ -257,6 +256,11 @@ export default function DirectIndirectObjectPage() {
                   key={i}
                   className="grid grid-cols-4 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors"
                 >
+                  {/* Original sentence — fixed text, not editable */}
+                  <div className="px-4 py-4 flex items-center">
+                    <span className="text-sm text-gray-800 dark:text-gray-200">{row.original}</span>
+                  </div>
+
                   {fieldKeys.map((field) => {
                     const val = answers[i]?.[field] ?? "";
                     const state = getState(val, row[field]);
@@ -288,9 +292,7 @@ export default function DirectIndirectObjectPage() {
                     return (
                       <div
                         key={field}
-                        className={`px-4 py-4 flex items-center gap-2 ${
-                          field !== "original" ? "border-l border-gray-100 dark:border-white/6" : ""
-                        }`}
+                        className="px-4 py-4 flex items-center gap-2 border-l border-gray-100 dark:border-white/6"
                       >
                         <span
                           className={`w-5 h-5 shrink-0 text-sm font-bold flex items-center justify-center transition-all duration-200 ${statusColor} ${
@@ -328,7 +330,7 @@ export default function DirectIndirectObjectPage() {
               onClick={() =>
                 setAnswers(
                   Object.fromEntries(
-                    practice.map((_, i) => [i, { original: "", direct: "", indirect: "", rewritten: "" }])
+                    practice.map((_, i) => [i, { direct: "", indirect: "", rewritten: "" }])
                   )
                 )
               }

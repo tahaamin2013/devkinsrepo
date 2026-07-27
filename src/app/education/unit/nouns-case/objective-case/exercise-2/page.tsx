@@ -27,15 +27,27 @@ const examples: Example[] = [
 
 type PracticeRow = {
   original: string;
-  answer: string;
+  direct: string;
+  indirect: string;
+  rewritten: string;
 };
 
 const practice: PracticeRow[] = [
-  { original: "I bought Rama a ball.", answer: "I bought a ball for Rama." },
-  { original: "Fetch the boy a book.", answer: "Fetch a book for the boy." },
-  { original: "She made Ruth a new dress.", answer: "She made a new dress for Ruth." },
-  { original: "Get me a taxi.", answer: "Get a taxi for me." },
+  { original: "I bought Rama a ball.", direct: "a ball", indirect: "Rama", rewritten: "I bought a ball for Rama." },
+  { original: "Fetch the boy a book.", direct: "a book", indirect: "the boy", rewritten: "Fetch a book for the boy." },
+  { original: "She made Ruth a new dress.", direct: "a new dress", indirect: "Ruth", rewritten: "She made a new dress for Ruth." },
+  { original: "Get me a taxi.", direct: "a taxi", indirect: "me", rewritten: "Get a taxi for me." },
 ];
+
+const fieldKeys = ["original", "direct", "indirect", "rewritten"] as const;
+type FieldKey = (typeof fieldKeys)[number];
+
+const fieldPlaceholders: Record<FieldKey, string> = {
+  original: "Type the original sentence…",
+  direct: "Type the direct object…",
+  indirect: "Type the indirect object…",
+  rewritten: "Rewrite with to/for…",
+};
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -70,8 +82,10 @@ function ScoreBadge({ correct, total }: { correct: number; total: number }) {
 
 export default function DirectIndirectObjectPage() {
   const [dark, setDark] = useState<boolean>(false);
-  const [answers, setAnswers] = useState<Record<number, string>>(() =>
-    Object.fromEntries(practice.map((_, i) => [i, ""]))
+  const [answers, setAnswers] = useState<Record<number, Record<FieldKey, string>>>(() =>
+    Object.fromEntries(
+      practice.map((_, i) => [i, { original: "", direct: "", indirect: "", rewritten: "" }])
+    )
   );
 
   useEffect(() => {
@@ -79,13 +93,15 @@ export default function DirectIndirectObjectPage() {
     else document.documentElement.classList.remove("dark");
   }, [dark]);
 
-  function setAnswer(i: number, value: string) {
-    setAnswers((prev) => ({ ...prev, [i]: value }));
+  function setAnswer(i: number, field: FieldKey, value: string) {
+    setAnswers((prev) => ({ ...prev, [i]: { ...prev[i], [field]: value } }));
   }
 
-  const totalFields = practice.length;
+  const totalFields = practice.length * fieldKeys.length;
   const correctCount = practice.reduce((acc, row, i) => {
-    if (getState(answers[i], row.answer) === "correct") acc++;
+    fieldKeys.forEach((field) => {
+      if (getState(answers[i][field], row[field]) === "correct") acc++;
+    });
     return acc;
   }, 0);
   const allCorrect = correctCount === totalFields;
@@ -95,7 +111,7 @@ export default function DirectIndirectObjectPage() {
 
       {/* ── Top bar ── */}
       <header className="sticky top-0 z-20 border-b border-gray-200 dark:border-white/10 bg-white/90 dark:bg-[#1C1917]/90 backdrop-blur-md">
-        <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
+        <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <span className="text-xl">📖</span>
             <h1 className="text-base font-bold tracking-tight text-gray-900 dark:text-white">
@@ -118,7 +134,7 @@ export default function DirectIndirectObjectPage() {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 py-8 space-y-6">
+      <main className="max-w-5xl mx-auto px-4 py-8 space-y-6">
 
         {/* ── Rule banner ── */}
         <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.03] px-5 py-4 flex items-start gap-3">
@@ -196,7 +212,7 @@ export default function DirectIndirectObjectPage() {
           >
             <span className="text-2xl">🎉</span>
             <p className="text-sm font-semibold text-green-700 dark:text-green-300">
-              All correct! You have rewritten every sentence correctly.
+              All correct! You have filled in every field correctly.
             </p>
           </div>
         )}
@@ -209,9 +225,9 @@ export default function DirectIndirectObjectPage() {
           <div className="bg-[#1C1917] dark:bg-white/8 px-6 py-5 flex items-center gap-4 border-b border-white/10">
             <span className="text-4xl leading-none">✏️</span>
             <div className="flex-1 min-w-0">
-              <h2 className="text-xl font-bold text-white tracking-tight">Rewrite the Sentence</h2>
+              <h2 className="text-xl font-bold text-white tracking-tight">Fill In the Table</h2>
               <p className="text-gray-400 text-sm mt-0.5">
-                Place the Indirect Object after the Direct Object, using "to" or "for"
+                Fill in all four columns for each sentence
               </p>
             </div>
             <span className="text-gray-400 dark:text-gray-500 text-sm font-semibold bg-white/10 dark:bg-white/8 rounded-full px-2.5 py-0.5">
@@ -219,72 +235,85 @@ export default function DirectIndirectObjectPage() {
             </span>
           </div>
 
-          <div className="grid grid-cols-[1.2fr_1.5fr] bg-gray-50 dark:bg-white/[0.03] border-b border-gray-200 dark:border-white/8">
-            <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-              Original Sentence
+          <div className="grid grid-cols-4 bg-gray-50 dark:bg-white/[0.03] border-b border-gray-200 dark:border-white/8">
+            <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-indigo-500 dark:text-indigo-400">
+              Indirect before Direct
             </div>
             <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-indigo-500 dark:text-indigo-400 border-l border-gray-200 dark:border-white/8">
-              Rewritten Sentence (type here)
+              Direct Object
+            </div>
+            <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-indigo-500 dark:text-indigo-400 border-l border-gray-200 dark:border-white/8">
+              Indirect Object
+            </div>
+            <div className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-indigo-500 dark:text-indigo-400 border-l border-gray-200 dark:border-white/8">
+              Indirect after Direct
             </div>
           </div>
 
           <div className="divide-y divide-gray-100 dark:divide-white/6 bg-white dark:bg-[#1C1917]">
             {practice.map((row, i) => {
-              const val = answers[i] ?? "";
-              const state = getState(val, row.answer);
-
-              const inputBorder =
-                state === "correct"
-                  ? "border-green-400 dark:border-green-500"
-                  : state === "wrong"
-                  ? "border-red-400 dark:border-red-500"
-                  : "border-gray-200 dark:border-white/15";
-
-              const inputBg =
-                state === "correct"
-                  ? "bg-green-50 dark:bg-green-900/20"
-                  : state === "wrong"
-                  ? "bg-red-50 dark:bg-red-900/20"
-                  : "bg-white dark:bg-[#1C1917]";
-
-              const inputText =
-                state === "correct"
-                  ? "text-green-700 dark:text-green-300"
-                  : state === "wrong"
-                  ? "text-red-600 dark:text-red-400"
-                  : "text-gray-700 dark:text-gray-200";
-
-              const statusIcon = state === "correct" ? "✓" : state === "wrong" ? "✕" : "";
-              const statusColor = state === "correct" ? "text-green-500" : "text-red-400";
-
               return (
                 <div
                   key={i}
-                  className="grid grid-cols-[1.2fr_1.5fr] hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors"
+                  className="grid grid-cols-4 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors"
                 >
-                  <div className="px-4 py-4 flex items-center">
-                    <span className="text-sm text-gray-800 dark:text-gray-200">{row.original}</span>
-                  </div>
-                  <div className="px-4 py-4 border-l border-gray-100 dark:border-white/6 flex items-center gap-2">
-                    <span
-                      className={`w-5 h-5 shrink-0 text-sm font-bold flex items-center justify-center transition-all duration-200 ${statusColor} ${
-                        state === "empty" ? "opacity-0" : "opacity-100"
-                      }`}
-                    >
-                      {statusIcon}
-                    </span>
-                    <input
-                      type="text"
-                      value={val}
-                      onChange={(e) => setAnswer(i, e.target.value)}
-                      className={`
-                        flex-1 text-sm rounded-lg px-3 py-2
-                        border-2 outline-none transition-all duration-200
-                        placeholder-gray-300 dark:placeholder-white/20
-                        ${inputBorder} ${inputBg} ${inputText}
-                      `}
-                    />
-                  </div>
+                  {fieldKeys.map((field) => {
+                    const val = answers[i]?.[field] ?? "";
+                    const state = getState(val, row[field]);
+
+                    const inputBorder =
+                      state === "correct"
+                        ? "border-green-400 dark:border-green-500"
+                        : state === "wrong"
+                        ? "border-red-400 dark:border-red-500"
+                        : "border-gray-200 dark:border-white/15";
+
+                    const inputBg =
+                      state === "correct"
+                        ? "bg-green-50 dark:bg-green-900/20"
+                        : state === "wrong"
+                        ? "bg-red-50 dark:bg-red-900/20"
+                        : "bg-white dark:bg-[#1C1917]";
+
+                    const inputText =
+                      state === "correct"
+                        ? "text-green-700 dark:text-green-300"
+                        : state === "wrong"
+                        ? "text-red-600 dark:text-red-400"
+                        : "text-gray-700 dark:text-gray-200";
+
+                    const statusIcon = state === "correct" ? "✓" : state === "wrong" ? "✕" : "";
+                    const statusColor = state === "correct" ? "text-green-500" : "text-red-400";
+
+                    return (
+                      <div
+                        key={field}
+                        className={`px-4 py-4 flex items-center gap-2 ${
+                          field !== "original" ? "border-l border-gray-100 dark:border-white/6" : ""
+                        }`}
+                      >
+                        <span
+                          className={`w-5 h-5 shrink-0 text-sm font-bold flex items-center justify-center transition-all duration-200 ${statusColor} ${
+                            state === "empty" ? "opacity-0" : "opacity-100"
+                          }`}
+                        >
+                          {statusIcon}
+                        </span>
+                        <input
+                          type="text"
+                          value={val}
+                          placeholder={fieldPlaceholders[field]}
+                          onChange={(e) => setAnswer(i, field, e.target.value)}
+                          className={`
+                            flex-1 min-w-0 text-sm rounded-lg px-3 py-2
+                            border-2 outline-none transition-all duration-200
+                            placeholder-gray-300 dark:placeholder-white/20
+                            ${inputBorder} ${inputBg} ${inputText}
+                          `}
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
               );
             })}
@@ -296,7 +325,13 @@ export default function DirectIndirectObjectPage() {
               Verbs like give, do, tell, and offer use "to"; verbs like buy, fetch, make, and get use "for".
             </p>
             <button
-              onClick={() => setAnswers(Object.fromEntries(practice.map((_, i) => [i, ""])))}
+              onClick={() =>
+                setAnswers(
+                  Object.fromEntries(
+                    practice.map((_, i) => [i, { original: "", direct: "", indirect: "", rewritten: "" }])
+                  )
+                )
+              }
               className="text-xs text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors underline underline-offset-2 shrink-0"
             >
               Reset all
